@@ -31,10 +31,10 @@ dark = (42, 60, 55)
 
 position = [[br,bn,bb,bk,bq,bb,bn,br],
 		 [bp,bp,bp,bp,bp,bp,bp,bp],
-		 [0,0,0,0,0,0,0,0],
-		 [0,0,0,0,0,0,0,0],
-		 [0,0,0,0,0,0,0,0],
-		 [0,0,0,0,0,0,0,0],
+		 [1,1,1,1,1,1,1,1],
+		 [1,1,1,1,1,1,1,1],
+		 [1,1,1,1,1,1,1,1],
+		 [1,1,1,1,1,1,1,1],
 		 [wp,wp,wp,wp,wp,wp,wp,wp],
 		 [wr,wn,wb,wk,wq,wb,wn,wr]]
 
@@ -59,8 +59,10 @@ def draw_pieces():
 	column = 0
 	while row < 8:
 		if column < 8:
-			current = [row][column]
-			if current != 0:
+			current = position[row][column]
+			if current != 1:
+				print(row," ",column, " ", current)
+				window.blit(current, (((64 * row) + 64), ((64 * column) + 64)))
 			column += 1
 		row += 1
 		column = 0
@@ -79,11 +81,12 @@ turn = 1 #1 for white, 0 for black
 
 #main
 
-
+#draw_pieces()
+draw_board()
 loop = True
 while loop:
 	pygame.time.delay(1000)
-	draw_board()
+#	draw_board()
 	draw_pieces()
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
