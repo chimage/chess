@@ -4,6 +4,10 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 pygame.init()
 
+mx = 0
+my = 0
+
+#Window Setup
 screen = 512+128
 window = pygame.display.set_mode((screen, screen))
 pygame.display.set_caption("Chess")
@@ -12,6 +16,7 @@ icon = pygame.image.load("wk.png")
 
 pygame.display.set_icon(icon)
 
+#Loading images
 wq = pygame.image.load("wq.png")
 wk = pygame.image.load("wk.png")
 wr = pygame.image.load("wr.png")
@@ -31,15 +36,15 @@ turn = 0
 light = (255, 255, 255)
 dark = (42, 60, 55)
 
-
-position = [[br,bn,bb,bk,bq,bb,bn,br],
+#Seting starting poition
+position = [[br,bn,bb,bq,bk,bb,bn,br],
 		 [bp,bp,bp,bp,bp,bp,bp,bp],
 		 [1,1,1,1,1,1,1,1],
 		 [1,1,1,1,1,1,1,1],
 		 [1,1,1,1,1,1,1,1],
 		 [1,1,1,1,1,1,1,1],
 		 [wp,wp,wp,wp,wp,wp,wp,wp],
-		 [wr,wn,wb,wk,wq,wb,wn,wr]]
+		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 
 game_display = pygame.display.set_mode((512+128,512+128))
 boardLength = 8
@@ -80,6 +85,7 @@ values = {
 
 
 turn = 1 #1 for white, 0 for black
+selected = False
 
 #main
 loop = True
@@ -90,5 +96,30 @@ while loop:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			 loop = False
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			#moving pieces
+			if selected == False:
+				mx, my = pygame.mouse.get_pos()
+				mx = mx/64
+				my = my/64
+				mx = int(mx)
+				my = int(my)
+				print(mx,my)
+				current = position[mx][my]
+				selected = True
+			else:
+				new_mx, new_my = pygame.mouse.get_pos()
+				new_mx = new_mx/64
+				new_my = new_my/64
+				new_mx = int(new_mx)
+				new_my = int(new_my)
+				print("n",new_mx,new_my)
+				if new_mx != mx or new_my != my:
+					position[mx][my] = 1
+					print(current)
+					position[new_mx][new_my] = current
+					print(position)
+				selected = False
+
 
 	pygame.display.update()
