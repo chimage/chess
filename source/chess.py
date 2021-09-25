@@ -8,6 +8,9 @@ screen = 512+128
 window = pygame.display.set_mode((screen, screen))
 pygame.display.set_caption("Chess")
 
+icon = pygame.image.load("wk.png")
+
+pygame.display.set_icon(icon)
 
 wq = pygame.image.load("wq.png")
 wk = pygame.image.load("wk.png")
@@ -58,11 +61,10 @@ def draw_pieces():
 	row = 0
 	column = 0
 	while row < 8:
-		if column < 8:
-			current = position[row][column]
+		while column < 8:
+			current = position[column][row]
 			if current != 1:
-				print(row," ",column, " ", current)
-				window.blit(current, (((64 * row) + 64), ((64 * column) + 64)))
+				window.blit(current, (((64 * row) + 74), ((64 * column) + 74)))
 			column += 1
 		row += 1
 		column = 0
@@ -81,13 +83,13 @@ turn = 1 #1 for white, 0 for black
 
 #main
 
-#draw_pieces()
 draw_board()
+draw_pieces()
 loop = True
 while loop:
-	pygame.time.delay(1000)
+	pygame.time.delay(2)
 #	draw_board()
-	draw_pieces()
+#	draw_pieces()
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			 loop = False
