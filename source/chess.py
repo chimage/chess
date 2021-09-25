@@ -82,14 +82,11 @@ values = {
 turn = 1 #1 for white, 0 for black
 
 #main
-
-draw_board()
-draw_pieces()
 loop = True
 while loop:
 	pygame.time.delay(2)
-#	draw_board()
-#	draw_pieces()
+	draw_board()
+	draw_pieces()
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			 loop = False
