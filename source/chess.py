@@ -34,9 +34,9 @@ bp = pygame.image.load("bp.png")
 turn = 0
 
 light = (255, 255, 255)
-dark = (42, 60, 55)
+dark = (171, 122, 101)
 
-#Seting starting poition
+#Setting starting poition
 position = [[br,bn,bb,bq,bk,bb,bn,br],
 		 [bp,bp,bp,bp,bp,bp,bp,bp],
 		 [1,1,1,1,1,1,1,1],
@@ -99,26 +99,22 @@ while loop:
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			#moving pieces
 			if selected == False:
-				mx, my = pygame.mouse.get_pos()
-				mx = mx/64
-				my = my/64
+				my, mx = pygame.mouse.get_pos()
+				mx = mx/64 - 1
+				my = my/64 - 1
 				mx = int(mx)
 				my = int(my)
-				print(mx,my)
 				current = position[mx][my]
 				selected = True
 			else:
-				new_mx, new_my = pygame.mouse.get_pos()
-				new_mx = new_mx/64
-				new_my = new_my/64
+				new_my, new_mx = pygame.mouse.get_pos()
+				new_mx = new_mx/64 - 1
+				new_my = new_my/64 - 1
 				new_mx = int(new_mx)
 				new_my = int(new_my)
-				print("n",new_mx,new_my)
 				if new_mx != mx or new_my != my:
 					position[mx][my] = 1
-					print(current)
 					position[new_mx][new_my] = current
-					print(position)
 				selected = False
 
 
