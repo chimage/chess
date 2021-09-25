@@ -116,6 +116,7 @@ while loop:
 					position[mx][my] = 1
 					position[new_mx][new_my] = current
 				selected = False
+				turn ^= 1
 
 
 	pygame.display.update()
