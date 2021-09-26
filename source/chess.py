@@ -31,8 +31,6 @@ bb = pygame.image.load("bb.png")
 bn = pygame.image.load("bn.png")
 bp = pygame.image.load("bp.png")
 
-turn = 0
-
 light = (255, 255, 255)
 dark = (171, 122, 101)
 
@@ -85,7 +83,22 @@ values = {
 
 
 turn = 1 #1 for white, 0 for black
+legal = 0 #1 legal, 0 not legal
 selected = False
+skip = False
+
+font = pygame.font.SysFont("consolas", 16)
+
+def draw_turn():
+	pygame.draw.rect(window, (255, 255, 255), (0,0,512+128,64))
+	if turn == 1:
+		player = "white"
+	else:
+		player = "Black"
+	label = font.render(str(player), 1, (0,0,0))
+	window.blit(label, (64, 32))
+	label = font.render("0Chess", 1, (0,0,0))
+	window.blit(label, (512, 32))
 
 #main
 loop = True
@@ -93,19 +106,26 @@ while loop:
 	pygame.time.delay(2)
 	draw_board()
 	draw_pieces()
+	draw_turn()
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			 loop = False
+		#moving pieces
 		if event.type == pygame.MOUSEBUTTONDOWN:
-			#moving pieces
 			if selected == False:
-				my, mx = pygame.mouse.get_pos()
-				mx = mx/64 - 1
-				my = my/64 - 1
-				mx = int(mx)
-				my = int(my)
-				current = position[mx][my]
-				selected = True
+				if skip == False:
+					my, mx = pygame.mouse.get_pos()
+					mx = mx/64 - 1
+					my = my/64 - 1
+					mx = int(mx)
+					my = int(my)
+					if position[mx][my] != 1:
+						current = position[mx][my]
+						selected = True
+					else:
+						skip = True
+				else:
+					skip = False
 			else:
 				new_my, new_mx = pygame.mouse.get_pos()
 				new_mx = new_mx/64 - 1
