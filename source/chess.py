@@ -12,7 +12,7 @@ screen = 512+128
 window = pygame.display.set_mode((screen, screen))
 pygame.display.set_caption("Chess")
 
-icon = pygame.image.load("wk.png")
+icon = pygame.image.load("wk.ico")
 
 pygame.display.set_icon(icon)
 
@@ -29,7 +29,7 @@ bk = pygame.image.load("bk.png")
 br = pygame.image.load("br.png")
 bb = pygame.image.load("bb.png")
 bn = pygame.image.load("bn.png")
-bp = pygame.image.load("bp.png")	
+bp = pygame.image.load("bp.png")
 
 light = (255, 255, 255)
 dark = (171, 122, 101)
@@ -87,7 +87,7 @@ legal = 0 #1 legal, 0 not legal
 selected = False
 skip = False
 
-font = pygame.font.SysFont("Roboto Mono", 16)
+font = pygame.font.SysFont("consolas", 16)
 
 def draw_turn():
 	pygame.draw.rect(window, (255, 255, 255), (0,0,512+128,64))
@@ -97,6 +97,8 @@ def draw_turn():
 		player = "Black"
 	label = font.render(str(player), 1, (0,0,0))
 	window.blit(label, (64, 32))
+	label = font.render("0Chess", 1, (0,0,0))
+	window.blit(label, (512, 32))
 
 #main
 loop = True
