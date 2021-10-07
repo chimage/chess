@@ -132,7 +132,7 @@ while loop:
 					my = my/64 - 1
 					mx = int(mx)
 					my = int(my)
-					if mx > -1 and mx < 8 and my > -1 and my > 8:
+					if mx > -1 and mx < 8 and my > -1 and my < 8:
 						if position[mx][my] != 1:
 							current = position[mx][my]
 							selected = True
@@ -147,10 +147,10 @@ while loop:
 				new_mx = int(new_mx)
 				new_my = int(new_my)
 
-				if turn == 1:
-					start = "w"
-				else:
-					start = "b"
+				#if turn == 1:
+				#	start = "w"
+				#else:
+				#	start = "b"
 
 				#rook = start + "r"
 				#bishop = start + "b"
