@@ -67,14 +67,14 @@ dark = (171, 122, 101)
 #		 [wp,wp,wp,wp,wp,wp,wp,wp],
 #		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 #Testing starting position
-position = [[br,1,1,1,1,1,1,1],
-		 [1,1,bk,1,1,1,wn,1],
-		 [1,1,bb,1,1,1,bn,1],
+position = [[1,1,1,1,1,1,1,1],
+		 [1,1,1,1,bn,1,1,1],
+		 [1,1,1,bk,bq,1,1,1],
+		 [1,1,1,bb,br,1,1,1],
 		 [1,1,1,1,1,1,1,1],
-		 [1,1,1,1,1,1,wb,1],
-		 [1,1,1,1,1,1,wk,1],
-		 [1,1,1,bq,1,1,1,1],
-		 [1,1,1,1,1,1,1,wr]]
+		 [1,1,1,1,1,wb,wq,wr],
+		 [1,1,1,1,1,wn,1,1],
+		 [1,1,1,1,1,1,1,wk]]
 
 game_display = pygame.display.set_mode((512+128,512+128))
 boardLength = 8
@@ -151,6 +151,7 @@ legal = False
 
 #main
 loop = True
+
 while loop:
 	pygame.time.delay(2)
 	draw_board()
@@ -167,6 +168,12 @@ while loop:
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			if selected == False:
 				if skip == False:
+
+					if turn == 1:
+						start = "w"
+					else:
+						start = "b"
+
 					my, mx = pygame.mouse.get_pos() #mx and my are the starting square coordinates
 					mx = mx/64 - 1
 					my = my/64 - 1
@@ -188,22 +195,22 @@ while loop:
 				new_my = int(new_my)
 
 				#King's legal moves
-				if current == wk or bk:
-					if mx == new_mx or my == new_my:
-						if mx == x + 1 or mx == x - 1:
-							legal = True
-						elif my == y + 1 or my == y - 1:
-							legal = True
-					else:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x == y and x != 0:
-							if mx == x + 1 or mx == x - 1:
-								legal = True
-							elif my == y + 1 or my == y - 1:
-								legal = True
-						else:
-							legal = False
+				#if current == wk or bk:
+				#	if mx == new_mx or my == new_my:
+				#		if mx == new_mx + 1 or mx == new_mx - 1:
+				#			legal = True
+				#		elif my == new_my + 1 or my == new_my - 1:
+				#			legal = True
+				#	else:
+				#		x = abs(new_mx - mx)
+				#		y = abs(new_my - my)
+				#		if x == y and x != 0:
+				#			if mx == x + 1 or mx == x - 1:
+				#				legal = True
+				#			elif my == y + 1 or my == y - 1:
+				#				legal = True
+				#		else:
+				#			legal = False
 				
 				#Rook's legal moves
 				if current == wr or br:
@@ -234,17 +241,17 @@ while loop:
 							legal = False
 				
 				#Knights legal moves
-				if current == wn or bn:
-					if mx != new_mx or my != new_my:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x != y and x == 0:
-							if (mx != x + 2 or mx != x - 2) or (my != y + 2 or my != y - 2):
-								print()
-						else:
-							legal = False
-					else:
-						legal = False
+				#if current == wn or bn:
+				#	if mx != new_mx or my != new_my:
+				#		x = abs(new_mx - mx)
+				#		y = abs(new_my - my)
+				#		if x != y and x == 0:
+				#			if (mx != x + 2 or mx != x - 2) or (my != y + 2 or my != y - 2):
+				#				print()
+				#		else:
+				#			legal = False
+				#	else:
+				#		legal = False
 						
 				#Changing array to move pieces
 				if new_mx != mx or new_my != my:
@@ -252,6 +259,7 @@ while loop:
 						position[mx][my] = 1
 						position[new_mx][new_my] = current
 						turn ^= 1
+						legal = False
 				selected = False
 
 
