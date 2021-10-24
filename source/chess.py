@@ -1,4 +1,4 @@
-#Wombat chess
+##Wombat chess
 #Open source project for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
@@ -68,9 +68,9 @@ dark = (171, 122, 101)
 #		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 #Testing starting position
 position = [[1,1,1,1,1,1,1,1],
-		 [1,1,1,1,bn,1,wp,1],
-		 [1,1,1,bk,bq,1,bp,1],
-		 [1,1,1,bb,br,1,1,1],
+		 [1,1,1,1,bn,1,1,1],
+		 [1,wp,1,bk,bq,1,1,1],
+		 [bp,1,1,bb,br,1,1,1],
 		 [1,1,1,1,1,1,1,1],
 		 [1,1,1,1,1,wb,wq,wr],
 		 [1,1,1,1,1,wn,1,1],
@@ -205,9 +205,13 @@ while loop:
 						x = abs(new_mx - mx)
 						y = abs(new_my - my)
 						if x == y and x != 0:
-							if mx == x + 1 or mx == x - 1:
+							if mx == new_mx + 1 and my == new_my + 1:
 								legal = True
-							elif my == y + 1 or my == y - 1:
+							elif mx == new_mx - 1 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx - 1 and my == new_my + 1:
 								legal = True
 						else:
 							legal = False
@@ -243,16 +247,34 @@ while loop:
 				#Knights legal moves
 				if current == wn or current == bn:
 					if mx != new_mx or my != new_my:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x != y and x == 0:
-							if (mx != x + 2 or mx != x - 2) or (my != y + 2 or my != y - 2):
-								print()
-						else:
-							legal = False
+						if mx == new_mx - 1 and my == new_my + 2:
+							legal = True
+						elif mx == new_mx + 1 and my == new_my + 2:
+							legal = True
+						elif mx == new_mx - 2 and my == new_my + 1:
+							legal = True
+						elif mx == new_mx + 2 and my == new_my + 1:
+							legal = True
+						elif mx == new_mx - 2 and my == new_my - 1:
+							legal = True
+						elif mx == new_mx + 2 and my == new_my - 1:
+							legal = True
+						elif mx == new_mx - 1 and my == new_my - 2:
+							legal = True
+						elif mx == new_mx + 1 and my == new_my - 2:
+							legal = True
 					else:
 						legal = False
 						
+				#Pawns legal moves
+				if current == wp or current == bp:
+					if current == wp:
+						if mx == new_mx + 1 and my == new_my:
+							legal = True
+					if current == bp:
+						if mx == new_mx - 1 and my == new_my:
+							legal = True
+
 				#Changing array to move pieces
 				if legal == True:
 					if new_mx != mx or new_my != my:
