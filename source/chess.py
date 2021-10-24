@@ -68,8 +68,8 @@ dark = (171, 122, 101)
 #		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 #Testing starting position
 position = [[1,1,1,1,1,1,1,1],
-		 [1,1,1,1,bn,1,1,1],
-		 [1,1,1,bk,bq,1,1,1],
+		 [1,1,1,1,bn,1,wp,1],
+		 [1,1,1,bk,bq,1,bp,1],
 		 [1,1,1,bb,br,1,1,1],
 		 [1,1,1,1,1,1,1,1],
 		 [1,1,1,1,1,wb,wq,wr],
@@ -195,32 +195,32 @@ while loop:
 				new_my = int(new_my)
 
 				#King's legal moves
-				#if current == wk or bk:
-				#	if mx == new_mx or my == new_my:
-				#		if mx == new_mx + 1 or mx == new_mx - 1:
-				#			legal = True
-				#		elif my == new_my + 1 or my == new_my - 1:
-				#			legal = True
-				#	else:
-				#		x = abs(new_mx - mx)
-				#		y = abs(new_my - my)
-				#		if x == y and x != 0:
-				#			if mx == x + 1 or mx == x - 1:
-				#				legal = True
-				#			elif my == y + 1 or my == y - 1:
-				#				legal = True
-				#		else:
-				#			legal = False
+				if current == wk or current == bk:
+					if mx == new_mx or my == new_my:
+						if mx == new_mx + 1 or mx == new_mx - 1:
+							legal = True
+						elif my == new_my + 1 or my == new_my - 1:
+							legal = True
+					else:
+						x = abs(new_mx - mx)
+						y = abs(new_my - my)
+						if x == y and x != 0:
+							if mx == x + 1 or mx == x - 1:
+								legal = True
+							elif my == y + 1 or my == y - 1:
+								legal = True
+						else:
+							legal = False
 				
 				#Rook's legal moves
-				if current == wr or br:
+				if current == wr or current == br:
 					if mx == new_mx or my == new_my:
 						legal = True
 					else:
 						legal = False
 								
 				#Bishop's legal moves
-				if current == wb or bb:
+				if current == wb or current == bb:
 					x = abs(new_mx - mx)
 					y = abs(new_my - my)
 					if x == y and x != 0:
@@ -229,7 +229,7 @@ while loop:
 						legal = False
 
 				#Queen's legal moves
-				if current == wq or bq:
+				if current == wq or current == bq:
 					if mx == new_mx or my == new_my:
 						legal = True
 					else:
@@ -241,21 +241,21 @@ while loop:
 							legal = False
 				
 				#Knights legal moves
-				#if current == wn or bn:
-				#	if mx != new_mx or my != new_my:
-				#		x = abs(new_mx - mx)
-				#		y = abs(new_my - my)
-				#		if x != y and x == 0:
-				#			if (mx != x + 2 or mx != x - 2) or (my != y + 2 or my != y - 2):
-				#				print()
-				#		else:
-				#			legal = False
-				#	else:
-				#		legal = False
+				if current == wn or current == bn:
+					if mx != new_mx or my != new_my:
+						x = abs(new_mx - mx)
+						y = abs(new_my - my)
+						if x != y and x == 0:
+							if (mx != x + 2 or mx != x - 2) or (my != y + 2 or my != y - 2):
+								print()
+						else:
+							legal = False
+					else:
+						legal = False
 						
 				#Changing array to move pieces
-				if new_mx != mx or new_my != my:
-					if legal == True:
+				if legal == True:
+					if new_mx != mx or new_my != my:
 						position[mx][my] = 1
 						position[new_mx][new_my] = current
 						turn ^= 1
