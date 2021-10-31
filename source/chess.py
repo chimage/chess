@@ -2,7 +2,6 @@
 #Open source project for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
-
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" #Hiding the greetings from the pygame comminity message
 
@@ -20,6 +19,9 @@ pygame.display.set_caption("Chess")
 icon = pygame.image.load("wk.ico")
 
 pygame.display.set_icon(icon)
+
+sound = pygame.mixer.Sound("sound.wav")
+sound1 = pygame.mixer.Sound("sound1.wav")
 
 #Loading images
 _wq = pygame.image.load("wq.png")
@@ -158,6 +160,7 @@ while loop:
 
 		#moving pieces
 		if event.type == pygame.MOUSEBUTTONDOWN:
+
 			if selected == False:
 				if skip == False:
 
@@ -170,6 +173,8 @@ while loop:
 						if chessboard[mx][my] != 1:
 							current = chessboard[mx][my]
 							selected = True
+							if current != 1:
+								sound1.play()
 					else:
 						skip = True
 				else:
@@ -327,9 +332,16 @@ while loop:
 					if current == wp:
 						if mx == new_mx + 1 and my == new_my:
 							legal = True
+						elif mx == 6:
+							if mx == new_mx + 2 and my == new_my:
+								legal = True
 				elif current == bp:
-					if mx == new_mx - 1 and my == new_my:
-						legal = True
+					if mx == 1:
+						if mx == new_mx - 1 and my == new_my:
+							legal = True
+						elif mx == 1:
+							if mx == new_mx - 2 and my == new_my:
+								legal = True
 
 				#Changing array to move pieces
 				if legal == True:
@@ -338,6 +350,7 @@ while loop:
 						chessboard[new_mx][new_my] = current
 						turn ^= 1
 						legal = False
+						sound.play()
 				selected = False
 
 
