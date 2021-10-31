@@ -301,7 +301,7 @@ while loop:
 								legal = True
 						else:
 							legal = False
-				elif current == br:
+				elif current == bn:
 					if mx != new_mx or my != new_my:
 						if mx == new_mx - 1 and my == new_my + 2:
 							legal = True
