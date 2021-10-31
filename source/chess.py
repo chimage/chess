@@ -58,23 +58,14 @@ dark = (171, 122, 101)
 #Setting starting poition
 #Unlike on a normal chess board (where it would be 1-8), this records positions as 0-7
 
-#position = [[br,bn,bb,bq,bk,bb,bn,br]
-#		 [bp,bp,bp,bp,bp,bp,bp,bp],
-#		 [1,1,1,1,1,1,1,1],
-#		 [1,1,1,1,1,1,1,1],
-#		 [1,1,1,1,1,1,1,1],
-#		 [1,1,1,1,1,1,1,1],
-#		 [wp,wp,wp,wp,wp,wp,wp,wp],
-#		 [wr,wn,wb,wq,wk,wb,wn,wr]]
-#Testing starting position
-position = [[1,1,1,1,1,1,1,1],
-		 [1,1,1,1,bn,1,1,1],
-		 [1,wp,1,bk,bq,1,1,1],
-		 [bp,1,1,bb,br,1,1,1],
+chessboard = [[br,bn,bb,bq,bk,bb,bn,br],
+		 [bp,bp,bp,bp,bp,bp,bp,bp],
 		 [1,1,1,1,1,1,1,1],
-		 [1,1,1,1,1,wb,wq,wr],
-		 [1,1,1,1,1,wn,1,1],
-		 [1,1,1,1,1,1,1,wk]]
+		 [1,1,1,1,1,1,1,1],
+		 [1,1,1,1,1,1,1,1],
+		 [1,1,1,1,1,1,1,1],
+		 [wp,wp,wp,wp,wp,wp,wp,wp],
+		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 
 game_display = pygame.display.set_mode((512+128,512+128))
 boardLength = 8
@@ -98,7 +89,7 @@ def draw_pieces():
 	column = 0
 	while row < 8:
 		while column < 8:
-			current = position[column][row]
+			current = chessboard[column][row]
 			if current != 1:
 				#Drawing pieces
 				if current == bn:
@@ -158,6 +149,7 @@ while loop:
 	draw_pieces()
 	draw_turn()
 
+
 	for event in pygame.event.get():
 
 		#closing window
@@ -169,19 +161,14 @@ while loop:
 			if selected == False:
 				if skip == False:
 
-					if turn == 1:
-						start = "w"
-					else:
-						start = "b"
-
 					my, mx = pygame.mouse.get_pos() #mx and my are the starting square coordinates
 					mx = mx/64 - 1
 					my = my/64 - 1
 					mx = int(mx)
 					my = int(my)
 					if mx > -1 and mx < 8 and my > -1 and my < 8:
-						if position[mx][my] != 1:
-							current = position[mx][my]
+						if chessboard[mx][my] != 1:
+							current = chessboard[mx][my]
 							selected = True
 					else:
 						skip = True
@@ -194,8 +181,31 @@ while loop:
 				new_mx = int(new_mx)
 				new_my = int(new_my)
 
+				#Legal moves
+
 				#King's legal moves
-				if current == wk or current == bk:
+				if turn == 1:
+					if current == wk:
+						if mx == new_mx or my == new_my:
+							if mx == new_mx + 1 or mx == new_mx - 1:
+								legal = True
+							elif my == new_my + 1 or my == new_my - 1:
+								legal = True
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
+								if mx == new_mx + 1 and my == new_my + 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx + 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my + 1:
+									legal = True
+							else:
+								legal = False
+				elif current == bk:
 					if mx == new_mx or my == new_my:
 						if mx == new_mx + 1 or mx == new_mx - 1:
 							legal = True
@@ -217,14 +227,28 @@ while loop:
 							legal = False
 				
 				#Rook's legal moves
-				if current == wr or current == br:
+				if turn == 1:
+					if current == wr:
+						if mx == new_mx or my == new_my:
+							legal = True
+						else:
+							legal = False
+				elif current == br:
 					if mx == new_mx or my == new_my:
 						legal = True
 					else:
 						legal = False
 								
 				#Bishop's legal moves
-				if current == wb or current == bb:
+				if turn == 1:
+					if current == wb:
+						x = abs(new_mx - mx)
+						y = abs(new_my - my)
+						if x == y and x != 0:
+							legal = True
+						else:
+							legal = False
+				elif current == wr:
 					x = abs(new_mx - mx)
 					y = abs(new_my - my)
 					if x == y and x != 0:
@@ -233,7 +257,18 @@ while loop:
 						legal = False
 
 				#Queen's legal moves
-				if current == wq or current == bq:
+				if turn == 1:
+					if current == wq:
+						if mx == new_mx or my == new_my:
+							legal = True
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
+								legal = True
+							else:
+								legal = False
+				elif current == bq:
 					if mx == new_mx or my == new_my:
 						legal = True
 					else:
@@ -245,7 +280,28 @@ while loop:
 							legal = False
 				
 				#Knights legal moves
-				if current == wn or current == bn:
+				if turn == 1:
+					if current == wn:
+						if mx != new_mx or my != new_my:
+							if mx == new_mx - 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx - 1 and my == new_my - 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my - 2:
+								legal = True
+						else:
+							legal = False
+				elif current == br:
 					if mx != new_mx or my != new_my:
 						if mx == new_mx - 1 and my == new_my + 2:
 							legal = True
@@ -267,19 +323,19 @@ while loop:
 						legal = False
 						
 				#Pawns legal moves
-				if current == wp or current == bp:
+				if turn == 1:
 					if current == wp:
 						if mx == new_mx + 1 and my == new_my:
 							legal = True
-					if current == bp:
-						if mx == new_mx - 1 and my == new_my:
-							legal = True
+				elif current == bp:
+					if mx == new_mx - 1 and my == new_my:
+						legal = True
 
 				#Changing array to move pieces
 				if legal == True:
 					if new_mx != mx or new_my != my:
-						position[mx][my] = 1
-						position[new_mx][new_my] = current
+						chessboard[mx][my] = 1
+						chessboard[new_mx][new_my] = current
 						turn ^= 1
 						legal = False
 				selected = False
