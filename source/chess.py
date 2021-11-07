@@ -1,5 +1,5 @@
 #Wombat chess
-#Open source project for more information see https://github.com/quay0/chess/
+#Open source project - for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
 import os
@@ -208,8 +208,6 @@ while loop:
 									legal = True
 								elif mx == new_mx - 1 and my == new_my + 1:
 									legal = True
-							else:
-								legal = False
 				elif current == bk:
 					if mx == new_mx or my == new_my:
 						if mx == new_mx + 1 or mx == new_mx - 1:
@@ -228,21 +226,15 @@ while loop:
 								legal = True
 							elif mx == new_mx - 1 and my == new_my + 1:
 								legal = True
-						else:
-							legal = False
 				
 				#Rook's legal moves
 				if turn == 1:
 					if current == wr:
 						if mx == new_mx or my == new_my:
 							legal = True
-						else:
-							legal = False
 				elif current == br:
 					if mx == new_mx or my == new_my:
 						legal = True
-					else:
-						legal = False
 								
 				#Bishop's legal moves
 				if turn == 1:
@@ -251,15 +243,11 @@ while loop:
 						y = abs(new_my - my)
 						if x == y and x != 0:
 							legal = True
-						else:
-							legal = False
-				elif current == wr:
+				elif current == bb:
 					x = abs(new_mx - mx)
 					y = abs(new_my - my)
 					if x == y and x != 0:
 						legal = True
-					else:
-						legal = False
 
 				#Queen's legal moves
 				if turn == 1:
@@ -271,8 +259,6 @@ while loop:
 							y = abs(new_my - my)
 							if x == y and x != 0:
 								legal = True
-							else:
-								legal = False
 				elif current == bq:
 					if mx == new_mx or my == new_my:
 						legal = True
@@ -281,8 +267,6 @@ while loop:
 						y = abs(new_my - my)
 						if x == y and x != 0:
 							legal = True
-						else:
-							legal = False
 				
 				#Knights legal moves
 				if turn == 1:
@@ -304,8 +288,6 @@ while loop:
 								legal = True
 							elif mx == new_mx + 1 and my == new_my - 2:
 								legal = True
-						else:
-							legal = False
 				elif current == bn:
 					if mx != new_mx or my != new_my:
 						if mx == new_mx - 1 and my == new_my + 2:
@@ -324,19 +306,30 @@ while loop:
 							legal = True
 						elif mx == new_mx + 1 and my == new_my - 2:
 							legal = True
-					else:
-						legal = False
 						
 				#Pawns legal moves
 				if turn == 1:
 					if current == wp:
-						if mx == new_mx + 1 and my == new_my:
-							legal = True
-						elif mx == 6:
-							if mx == new_mx + 2 and my == new_my:
+						piece_infront = chessboard[mx - 1][my]
+						if piece_infront != 1:
+							if new_my == my + 1 and new_mx == mx + 1: #does not work
+								legal =	True
+							if new_my == my + 1 and new_mx == mx - 1:
 								legal = True
+						else:
+							if mx == new_mx + 1 and my == new_my:
+								legal = True
+							elif mx == 6:
+								if mx == new_mx + 2 and my == new_my:
+									legal = True
 				elif current == bp:
-					if mx == 1:
+					piece_infront = chessboard[mx + 1][my]
+					if piece_infront != 1:
+						if new_my == my - 1 and new_mx == mx + 1: #does not work
+							legal =	True
+						if new_my == my - 1 and new_mx == mx - 1:
+							legal = True
+					else:
 						if mx == new_mx - 1 and my == new_my:
 							legal = True
 						elif mx == 1:
@@ -346,6 +339,7 @@ while loop:
 				#Changing array to move pieces
 				if legal == True:
 					if new_mx != mx or new_my != my:
+						print(str(mx)+str(my)+str(new_mx)+str(new_my))
 						chessboard[mx][my] = 1
 						chessboard[new_mx][new_my] = current
 						turn ^= 1
