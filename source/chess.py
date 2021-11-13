@@ -338,13 +338,13 @@ while loop:
 						target = chessboard[new_mx][new_my]
 
 						if turn == 1:
-							if target == bk or target == bq or target == bb or target == bn or target == bq or target == bp:
+							if target == bk or target == bq or target == bb or target == bn or target == bq or target == bp or target == 1:
 								chessboard[mx][my] = 1
 								chessboard[new_mx][new_my] = current
 								turn ^= 1
 								legal = False
 						elif turn == 0:
-							if target == wk or target == wq or target == wb or target == wn or target == wq or target == wp:
+							if target == wk or target == wq or target == wb or target == wn or target == wq or target == wp or target == 1:
 								chessboard[mx][my] = 1
 								chessboard[new_mx][new_my] = current
 								turn ^= 1
