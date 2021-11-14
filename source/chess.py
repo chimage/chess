@@ -253,19 +253,27 @@ if __name__ == "__main__":
 					
 						#Pawn
 						if current == wp:
-							piece_infront = chessboard[mx - 1][my]
-							piece_infront2 = chessboard[mx - 2][my]
-							if new_my == my - 1 and new_mx == mx - 1:
-								legal =	True
-							if new_my == my + 1 and new_mx == mx - 1:
-								legal = True
-							if piece_infront == 1:
-								if mx == new_mx + 1 and my == new_my:
-									legal = True
-							if piece_infront2 == 1 and piece_infront == 1:
-								if mx == 6:
-									if mx == new_mx + 2 and my == new_my:
+							if mx > 0 and my > 0:
+								left = chessboard[mx - 1][my - 1]
+								if left != 1:
+									if new_my == my - 1 and new_mx == mx - 1:
+										legal =	True
+							if mx > 0 and my < 7:
+								right = chessboard[mx - 1][my + 1]
+								if right != 1:
+									if new_my == my + 1 and new_mx == mx - 1:
 										legal = True
+							if mx > 0:
+								piece_infront = chessboard[mx - 1][my]
+								if piece_infront == 1:
+									if mx == new_mx + 1 and my == new_my:
+										legal = True
+							if mx > 1:
+								piece_infront2 = chessboard[mx - 2][my]
+								if piece_infront2 == 1 and piece_infront == 1:
+									if mx == 6:
+										if mx == new_mx + 2 and my == new_my:
+											legal = True
 
 						#Changing array to move pieces
 						if legal == True:
@@ -342,17 +350,27 @@ if __name__ == "__main__":
 						
 						#Pawn
 						if current == bp:
-							piece_infront = chessboard[mx + 1][my]
-							if piece_infront == 1:
-								if mx == new_mx - 1 and my == new_my:
-									legal = True
-								if mx == 1:
-									if mx == new_mx - 2 and my == new_my:
+							if mx < 7 and my < 0:
+								left = chessboard[mx + 1][my - 1]
+								if left != 1:
+									if new_my == my - 1 and new_mx == mx + 1:
+										legal =	True
+							if mx < 7 and my < 7:
+								right = chessboard[mx + 1][my + 1]
+								if right != 1:
+									if new_my == my + 1 and new_mx == mx + 1:
 										legal = True
-							if new_my == my - 1 and new_mx == mx + 1:
-								legal =	True
-							if new_my == my - 1 and new_mx == mx - 1:
-								legal = True
+							if mx < 7:
+								piece_infront = chessboard[mx + 1][my]
+								if piece_infront == 1:
+									if mx == new_mx - 1 and my == new_my:
+										legal = True
+							if mx < 6:
+								piece_infront2 = chessboard[mx + 2][my]
+								if piece_infront2 == 1 and piece_infront == 1:
+									if mx == 1:
+										if mx == new_mx - 2 and my == new_my:
+											legal = True
 
 						#Changing array to move pieces
 						if legal == True:
