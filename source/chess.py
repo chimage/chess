@@ -21,7 +21,7 @@ icon = pygame.image.load("wk.ico")
 pygame.display.set_icon(icon)
 
 sound = pygame.mixer.Sound("sound.wav")
-sound1 = pygame.mixer.Sound("sound1.wav")
+sound_1 = pygame.mixer.Sound("sound_1.wav")
 
 #Loading images
 _wq = pygame.image.load("wq.png")
@@ -142,214 +142,215 @@ def draw_turn():
 
 legal = False
 
-#main
-loop = True
+if __name__ == "__main__":
+	#main
+	loop = True
 
-while loop:
-	pygame.time.delay(2)
-	draw_board()
-	draw_pieces()
-	draw_turn()
+	while loop:
+		pygame.time.delay(2)
+		draw_board()
+		draw_pieces()
+		draw_turn()
 
 
-	for event in pygame.event.get():
+		for event in pygame.event.get():
 
-		#closing window
-		if event.type == pygame.QUIT:
-			loop = False
+			#closing window
+			if event.type == pygame.QUIT:
+				loop = False
 
-		#moving pieces
-		if event.type == pygame.MOUSEBUTTONDOWN:
+			#moving pieces
+			if event.type == pygame.MOUSEBUTTONDOWN:
 
-			if selected == False:
-				if skip == False:
+				if selected == False:
+					if skip == False:
 
-					my, mx = pygame.mouse.get_pos() #mx and my are the starting square coordinates
-					mx = mx/64 - 1
-					my = my/64 - 1
-					mx = int(mx)
-					my = int(my)
-					if mx > -1 and mx < 8 and my > -1 and my < 8:
-						if chessboard[mx][my] != 1:
-							current = chessboard[mx][my]
-							selected = True
-							if current != 1:
-								sound1.play()
+						my, mx = pygame.mouse.get_pos() #mx and my are the starting square coordinates
+						mx = mx/64 - 1
+						my = my/64 - 1
+						mx = int(mx)
+						my = int(my)
+						if mx > -1 and mx < 8 and my > -1 and my < 8:
+							if chessboard[mx][my] != 1:
+								current = chessboard[mx][my]
+								selected = True
+								if current != 1:
+									sound_1.play()
+						else:
+							skip = True
 					else:
-						skip = True
+						skip = False
 				else:
-					skip = False
-			else:
-				new_my, new_mx = pygame.mouse.get_pos() #mx and my are the target square coordinates
-				new_mx = new_mx/64 - 1
-				new_my = new_my/64 - 1
-				new_mx = int(new_mx)
-				new_my = int(new_my)
+					new_my, new_mx = pygame.mouse.get_pos() #mx and my are the target square coordinates
+					new_mx = new_mx/64 - 1
+					new_my = new_my/64 - 1
+					new_mx = int(new_mx)
+					new_my = int(new_my)
 
 
-				##Legal moves
+					##Legal moves
 
 
-				#King's legal moves
-				if current == wk and turn == 1:
-					if mx == new_mx or my == new_my:
-						if mx == new_mx + 1 or mx == new_mx - 1:
+					#King's legal moves
+					if current == wk and turn == 1:
+						if mx == new_mx or my == new_my:
+							if mx == new_mx + 1 or mx == new_mx - 1:
+								legal = True
+							elif my == new_my + 1 or my == new_my - 1:
+								legal = True
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
+								if mx == new_mx + 1 and my == new_my + 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx + 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my + 1:
+									legal = True
+					if  current == bk and turn == 0:
+						if mx == new_mx or my == new_my:
+							if mx == new_mx + 1 or mx == new_mx - 1:
+								legal = True
+							elif my == new_my + 1 or my == new_my - 1:
+								legal = True
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
+								if mx == new_mx + 1 and my == new_my + 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx + 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my + 1:
+									legal = True
+					
+					#Rook's legal moves
+					if current == wr and turn == 1:
+						if mx == new_mx or my == new_my:
 							legal = True
-						elif my == new_my + 1 or my == new_my - 1:
+					if  current == br and turn == 0:
+						if mx == new_mx or my == new_my:
 							legal = True
-					else:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x == y and x != 0:
-							if mx == new_mx + 1 and my == new_my + 1:
+									
+					#Bishop's legal moves
+						if current == wb and turn == 1:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
 								legal = True
-							elif mx == new_mx - 1 and my == new_my - 1:
-								legal = True
-							elif mx == new_mx + 1 and my == new_my - 1:
-								legal = True
-							elif mx == new_mx - 1 and my == new_my + 1:
-								legal = True
-				if  current == bk and turn == 0:
-					if mx == new_mx or my == new_my:
-						if mx == new_mx + 1 or mx == new_mx - 1:
-							legal = True
-						elif my == new_my + 1 or my == new_my - 1:
-							legal = True
-					else:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x == y and x != 0:
-							if mx == new_mx + 1 and my == new_my + 1:
-								legal = True
-							elif mx == new_mx - 1 and my == new_my - 1:
-								legal = True
-							elif mx == new_mx + 1 and my == new_my - 1:
-								legal = True
-							elif mx == new_mx - 1 and my == new_my + 1:
-								legal = True
-				
-				#Rook's legal moves
-				if current == wr and turn == 1:
-					if mx == new_mx or my == new_my:
-						legal = True
-				if  current == br and turn == 0:
-					if mx == new_mx or my == new_my:
-						legal = True
-								
-				#Bishop's legal moves
-					if current == wb and turn == 1:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x == y and x != 0:
-							legal = True
-				if  current == bb and turn == 0:
-					x = abs(new_mx - mx)
-					y = abs(new_my - my)
-					if x == y and x != 0:
-						legal = True
-
-				#Queen's legal moves
-				if current == wq and turn == 1:
-					if mx == new_mx or my == new_my:
-						legal = True
-					else:
+					if  current == bb and turn == 0:
 						x = abs(new_mx - mx)
 						y = abs(new_my - my)
 						if x == y and x != 0:
 							legal = True
-				if  current == bq and turn == 0:
-					if mx == new_mx or my == new_my:
-						legal = True
-					else:
-						x = abs(new_mx - mx)
-						y = abs(new_my - my)
-						if x == y and x != 0:
+
+					#Queen's legal moves
+					if current == wq and turn == 1:
+						if mx == new_mx or my == new_my:
 							legal = True
-				
-				#Knights legal moves
-				if current == wn and turn == 0:
-					if mx != new_mx or my != new_my:
-						if mx == new_mx - 1 and my == new_my + 2:
-							legal = True
-						elif mx == new_mx + 1 and my == new_my + 2:
-							legal = True
-						elif mx == new_mx - 2 and my == new_my + 1:
-							legal = True
-						elif mx == new_mx + 2 and my == new_my + 1:
-							legal = True
-						elif mx == new_mx - 2 and my == new_my - 1:
-							legal = True
-						elif mx == new_mx + 2 and my == new_my - 1:
-							legal = True
-						elif mx == new_mx - 1 and my == new_my - 2:
-							legal = True
-						elif mx == new_mx + 1 and my == new_my - 2:
-							legal = True
-				if  current == bn and turn == 0:
-					if mx != new_mx or my != new_my:
-						if mx == new_mx - 1 and my == new_my + 2:
-							legal = True
-						elif mx == new_mx + 1 and my == new_my + 2:
-							legal = True
-						elif mx == new_mx - 2 and my == new_my + 1:
-							legal = True
-						elif mx == new_mx + 2 and my == new_my + 1:
-							legal = True
-						elif mx == new_mx - 2 and my == new_my - 1:
-							legal = True
-						elif mx == new_mx + 2 and my == new_my - 1:
-							legal = True
-						elif mx == new_mx - 1 and my == new_my - 2:
-							legal = True
-						elif mx == new_mx + 1 and my == new_my - 2:
-							legal = True
-						
-				#Pawns legal moves
-				if current == wp and turn == 1:
-					piece_infront = chessboard[mx - 1][my]
-					piece_infront2 = chessboard[mx - 2][my]
-					if new_my == my - 1 and new_mx == mx - 1: #does not work
-						legal =	True
-					if new_my == my + 1 and new_mx == mx - 1:
-						legal = True
-					if piece_infront == 1:
-						if mx == new_mx + 1 and my == new_my:
-							legal = True
-					if piece_infront2 == 1 and piece_infront == 1:
-						if mx == 6:
-							if mx == new_mx + 2 and my == new_my:
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
 								legal = True
-				if  current == bp and turn == 0:
-					piece_infront = chessboard[mx + 1][my]
-					if piece_infront == 1:
-						if mx == new_mx - 1 and my == new_my:
+					if  current == bq and turn == 0:
+						if mx == new_mx or my == new_my:
 							legal = True
-						if mx == 1:
-							if mx == new_mx - 2 and my == new_my:
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
 								legal = True
-					if new_my == my - 1 and new_mx == mx + 1: #does not work
-						legal =	True
-					if new_my == my - 1 and new_mx == mx - 1:
-						legal = True
+					
+					#Knights legal moves
+					if current == wn and turn == 0:
+						if mx != new_mx or my != new_my:
+							if mx == new_mx - 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx - 1 and my == new_my - 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my - 2:
+								legal = True
+					if  current == bn and turn == 0:
+						if mx != new_mx or my != new_my:
+							if mx == new_mx - 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx - 1 and my == new_my - 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my - 2:
+								legal = True
+							
+					#Pawns legal moves
+					if current == wp and turn == 1:
+						piece_infront = chessboard[mx - 1][my]
+						piece_infront2 = chessboard[mx - 2][my]
+						if new_my == my - 1 and new_mx == mx - 1: #does not work
+							legal =	True
+						if new_my == my + 1 and new_mx == mx - 1:
+							legal = True
+						if piece_infront == 1:
+							if mx == new_mx + 1 and my == new_my:
+								legal = True
+						if piece_infront2 == 1 and piece_infront == 1:
+							if mx == 6:
+								if mx == new_mx + 2 and my == new_my:
+									legal = True
+					if  current == bp and turn == 0:
+						piece_infront = chessboard[mx + 1][my]
+						if piece_infront == 1:
+							if mx == new_mx - 1 and my == new_my:
+								legal = True
+							if mx == 1:
+								if mx == new_mx - 2 and my == new_my:
+									legal = True
+						if new_my == my - 1 and new_mx == mx + 1: #does not work
+							legal =	True
+						if new_my == my - 1 and new_mx == mx - 1:
+							legal = True
 
-				#Changing array to move pieces
-				if legal == True:
-					if new_mx != mx or new_my != my:
-						target = chessboard[new_mx][new_my]
+					#Changing array to move pieces
+					if legal == True:
+						if new_mx != mx or new_my != my:
+							target = chessboard[new_mx][new_my]
 
-						if turn == 1:
-							if target == bk or target == bq or target == bb or target == bn or target == bq or target == bp or target == 1:
-								chessboard[mx][my] = 1
-								chessboard[new_mx][new_my] = current
-								turn ^= 1
-								legal = False
-						elif turn == 0:
-							if target == wk or target == wq or target == wb or target == wn or target == wq or target == wp or target == 1:
-								chessboard[mx][my] = 1
-								chessboard[new_mx][new_my] = current
-								turn ^= 1
-								legal = False
-						sound.play()
-				selected = False
+							if turn == 1:
+								if target == bk or target == bq or target == bb or target == bn or target == bq or target == bp or target == 1:
+									chessboard[mx][my] = 1
+									chessboard[new_mx][new_my] = current
+									turn ^= 1
+									legal = False
+							elif turn == 0:
+								if target == wk or target == wq or target == wb or target == wn or target == wq or target == wp or target == 1:
+									chessboard[mx][my] = 1
+									chessboard[new_mx][new_my] = current
+									turn ^= 1
+									legal = False
+							sound.play()
+					selected = False
 
-	pygame.display.update()
+		pygame.display.update()
