@@ -137,7 +137,7 @@ def draw_turn():
 	#drawing text
 	label = font.render(str(player), 1, (0,0,0))
 	window.blit(label, (64, 32))
-	label = font.render("0Chess", 1, (0,0,0))
+	label = font.render("Goose Chess", 1, (0,0,0))
 	window.blit(label, (512, 32))
 
 legal = False
