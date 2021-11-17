@@ -154,7 +154,6 @@ if __name__ == "__main__":
 
 
 		for event in pygame.event.get():
-
 			#closing window
 			if event.type == pygame.QUIT:
 				loop = False
@@ -250,7 +249,7 @@ if __name__ == "__main__":
 									legal = True
 								elif mx == new_mx + 1 and my == new_my - 2:
 									legal = True
-					
+						
 						#Pawn
 						if current == wp:
 							if mx > 0 and my > 0:
@@ -284,6 +283,8 @@ if __name__ == "__main__":
 									chessboard[new_mx][new_my] = current
 									turn ^= 1
 									legal = False
+									if current == wp and new_mx == 0:
+										chessboard[0][new_my] = wq
 								sound.play()
 						selected = False
 					elif turn == 0:
@@ -310,7 +311,7 @@ if __name__ == "__main__":
 						if current == br:
 							if mx == new_mx or my == new_my:
 								legal = True
-								
+						
 						#Bishop
 						if current == bb:
 							x = abs(new_mx - mx)
@@ -381,6 +382,8 @@ if __name__ == "__main__":
 									chessboard[new_mx][new_my] = current
 									turn ^= 1
 									legal = False
+									if current == bp and new_mx == 7:
+										chessboard[7][new_my] = bq
 								sound.play()
 						selected = False
 
