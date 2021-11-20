@@ -212,7 +212,41 @@ if __name__ == "__main__":
 						#Rook
 						if current == wr:
 							if mx == new_mx or my == new_my:
-								legal = True
+								f_legal = True
+								if my != new_my:
+									if my < new_my:
+										p = my + 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = my - 1
+										while p > new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
+								else:
+									if mx < new_mx:
+										p = mx + 1
+										while p < new_mx:
+											if chessboard[p][my] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = mx - 1
+										while p > new_mx:
+											if chessboard[p][mx] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
 						
 						#Bishop
 						if current == wb:
@@ -224,7 +258,41 @@ if __name__ == "__main__":
 						#Queen
 						if current == wq:
 							if mx == new_mx or my == new_my:
-								legal = True
+								f_legal = True
+								if my != new_my:
+									if my < new_my:
+										p = my + 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = my - 1
+										while p > new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
+								else:
+									if mx < new_mx:
+										p = mx + 1
+										while p < new_mx:
+											if chessboard[p][my] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = mx - 1
+										while p > new_mx:
+											if chessboard[p][mx] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
 							else:
 								x = abs(new_mx - mx)
 								y = abs(new_my - my)
@@ -278,7 +346,7 @@ if __name__ == "__main__":
 						if legal == True:
 							if new_mx != mx or new_my != my:
 								target = chessboard[new_mx][new_my]
-								if target == bk or target == bq or target == bb or target == bn or target == bq or target == bp or target == 1:
+								if target == bk or target == bq or target == bb or target == bn or target == br or target == bp or target == 1:
 									chessboard[mx][my] = 1
 									chessboard[new_mx][new_my] = current
 									turn ^= 1
@@ -310,7 +378,41 @@ if __name__ == "__main__":
 						#Rook
 						if current == br:
 							if mx == new_mx or my == new_my:
-								legal = True
+								f_legal = True
+								if my != new_my:
+									if my < new_my:
+										p = my + 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = my - 1
+										while p > new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
+								else:
+									if mx < new_mx:
+										p = mx + 1
+										while p < new_mx:
+											if chessboard[p][my] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = mx - 1
+										while p > new_mx:
+											if chessboard[p][mx] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
 						
 						#Bishop
 						if current == bb:
@@ -322,7 +424,41 @@ if __name__ == "__main__":
 						#Queen
 						if current == bq:
 							if mx == new_mx or my == new_my:
-								legal = True
+								f_legal = True
+								if my != new_my:
+									if my < new_my:
+										p = my + 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = my - 1
+										while p > new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
+								else:
+									if mx < new_mx:
+										p = mx + 1
+										while p < new_mx:
+											if chessboard[p][my] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+									else:
+										p = mx - 1
+										while p > new_mx:
+											if chessboard[p][mx] != 1:
+												f_legal = False
+											p -= 1
+										if f_legal == True:
+											legal = True
 							else:
 								x = abs(new_mx - mx)
 								y = abs(new_my - my)
@@ -377,7 +513,7 @@ if __name__ == "__main__":
 						if legal == True:
 							if new_mx != mx or new_my != my:
 								target = chessboard[new_mx][new_my]
-								if target == wk or target == wq or target == wb or target == wn or target == wq or target == wp or target == 1:
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
 									chessboard[mx][my] = 1
 									chessboard[new_mx][new_my] = current
 									turn ^= 1
