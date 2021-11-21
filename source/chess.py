@@ -53,9 +53,24 @@ wr = -520
 wq = -920
 wk = -60000
 
+def count_values():
+	global value
+	global chessboard
+	aa = 0
+	bb = 0
+	count_loop = True
+	while count_loop:
+		value += chessboard[aa][bb]
+		aa += 1
+		if aa > 7:
+			aa = 0
+			bb += 1
+		if bb > 7:
+			count_loop = False
+
 #Setting colors for board
 light = (255, 255, 255)
-dark = (171, 122, 101)
+dark = (85, 136, 182)
 
 #Setting starting poition
 #Unlike on a normal chess board (where it would be 1-8), this records positions as 0-7
@@ -242,7 +257,7 @@ if __name__ == "__main__":
 									else:
 										p = mx - 1
 										while p > new_mx:
-											if chessboard[p][mx] != 1:
+											if chessboard[p][my] != 1:
 												f_legal = False
 											p -= 1
 										if f_legal == True:
@@ -356,6 +371,10 @@ if __name__ == "__main__":
 								sound.play()
 						selected = False
 					elif turn == 0:
+						value = 0
+						count_values()
+						print(value)
+				
 						#king
 						if current == bk:
 							if mx == new_mx or my == new_my:
