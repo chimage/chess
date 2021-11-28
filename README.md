@@ -4,5 +4,6 @@ Goose Chess is an open source Chess engine written in python. It is minimalist c
 https://github.com/quay0/chess
 
 ## Gallery
-![chess](https://user-images.githubusercontent.com/83027933/136653472-0527a485-d4b9-4a57-b9c7-d199db837655.png)
+
+![Screenshot 2021-11-28 083344](https://user-images.githubusercontent.com/83027933/143735442-1d8ee9ad-dc9d-4e33-bcc1-8a77d2699e0e.png)
 ![goose chess](https://user-images.githubusercontent.com/83027933/141642287-13a0fb66-6710-4cb2-a4d7-c8639a98cf40.png)
