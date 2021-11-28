@@ -154,6 +154,8 @@ def draw_turn():
 	window.blit(label, (64, 32))
 	label = font.render("Goose Chess", 1, (0,0,0))
 	window.blit(label, (512, 32))
+	label = font.render("New", 1, (108,85,182))
+	window.blit(label, (16, 8))
 
 legal = False
 
@@ -175,6 +177,23 @@ if __name__ == "__main__":
 
 			#moving pieces
 			if event.type == pygame.MOUSEBUTTONDOWN:
+				cx, cy = pygame.mouse.get_pos()
+				print(str(cx)+"  "+str(cy))
+				if cx < 64 and cy < 64:
+					turn = 1 #1 for white, 0 for black
+					selected = False
+					skip = False
+					legal = False
+					mx = 0
+					my = 0
+					chessboard = [[br,bn,bb,bq,bk,bb,bn,br],
+							[bp,bp,bp,bp,bp,bp,bp,bp],
+							[1,1,1,1,1,1,1,1],
+							[1,1,1,1,1,1,1,1],
+							[1,1,1,1,1,1,1,1],
+							[1,1,1,1,1,1,1,1],
+							[wp,wp,wp,wp,wp,wp,wp,wp],
+							[wr,wn,wb,wq,wk,wb,wn,wr]]
 
 				if selected == False:
 					if skip == False:
