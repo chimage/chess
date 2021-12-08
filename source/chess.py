@@ -1,4 +1,4 @@
-#Goose chess
+#Wombat chess
 #Open source project - for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
@@ -7,6 +7,8 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" #Hiding the greetings from the
 
 import pygame
 pygame.init()
+
+from copy import deepcopy
 
 mx = 0
 my = 0
@@ -53,14 +55,17 @@ wr = -520
 wq = -920
 wk = -60000
 
+value = 0
+
 def count_values():
 	global value
+	value = 0
 	global chessboard
 	aa = 0
 	bb = 0
 	count_loop = True
 	while count_loop:
-		value += chessboard[aa][bb]
+		value += test_chessboard[aa][bb]
 		aa += 1
 		if aa > 7:
 			aa = 0
@@ -83,6 +88,73 @@ chessboard = [[br,bn,bb,bq,bk,bb,bn,br],
 		 [1,1,1,1,1,1,1,1],
 		 [wp,wp,wp,wp,wp,wp,wp,wp],
 		 [wr,wn,wb,wq,wk,wb,wn,wr]]
+
+def caclulate_best_move():
+	global greatest
+	global legal
+	global test_chessboard
+	global chessboard
+	global turn
+
+	greatest = -90000000
+	count_a = 7
+	count_b = 7
+	while count_a >= 0:
+		while count_b >= 0:
+			current_piece = chessboard[count_a][count_b]
+			if current_piece == br:
+				pass
+			if current_piece == bb:
+				pass
+			if current_piece == bn:
+				new_mx = 7
+				new_my = 7
+				mx = count_a
+				my = count_b
+				while new_mx >= 0:
+					while new_my >= 0:
+						if mx != new_mx or my != new_my:
+							print(mx,my)
+							if mx == new_mx - 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my + 2:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my + 1:
+								legal = True
+							elif mx == new_mx - 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx + 2 and my == new_my - 1:
+								legal = True
+							elif mx == new_mx - 1 and my == new_my - 2:
+								legal = True
+							elif mx == new_mx + 1 and my == new_my - 2:
+								legal = True
+							test_chessboard = deepcopy(chessboard)
+							if legal == True:
+								test__chessboard = deepcopy(test_chessboard)
+								test__chessboard[new_mx][new_my] = current_piece
+								test__chessboard[mx][my] = 0
+								count_values()
+								if value > greatest:
+									test_chessboard[new_mx][new_my] = current_piece
+									test_chessboard[mx][my] = 0
+						new_my -= 1
+					new_mx -= 1
+					new_my = 7
+			if current_piece == bq:
+				pass
+			if current_piece == bk:
+				pass
+			if current_piece == bp:
+				pass
+			count_b -= 1
+		count_a -= 1
+		count_b = 7
+	chessboard = test_chessboard
+	turn ^= 1
+			
 
 game_display = pygame.display.set_mode((512+128,512+128))
 boardLength = 8
@@ -169,6 +241,8 @@ if __name__ == "__main__":
 		draw_pieces()
 		draw_turn()
 
+		if turn == 0:
+			caclulate_best_move()
 
 		for event in pygame.event.get():
 			#closing window
@@ -178,7 +252,6 @@ if __name__ == "__main__":
 			#moving pieces
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				cx, cy = pygame.mouse.get_pos()
-				print(str(cx)+"  "+str(cy))
 				if cx < 64 and cy < 64:
 					turn = 1 #1 for white, 0 for black
 					selected = False
@@ -197,7 +270,6 @@ if __name__ == "__main__":
 
 				if selected == False:
 					if skip == False:
-
 						my, mx = pygame.mouse.get_pos() #mx and my are the starting square coordinates
 						mx = mx/64 - 1
 						my = my/64 - 1
@@ -390,10 +462,9 @@ if __name__ == "__main__":
 								sound.play()
 						selected = False
 					elif turn == 0:
-						value = 0
-						count_values()
-						print(value)
-				
+
+						caclulate_best_move()
+
 						#king
 						if current == bk:
 							if mx == new_mx or my == new_my:
