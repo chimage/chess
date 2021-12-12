@@ -517,6 +517,9 @@ if __name__ == "__main__":
 
 					##Legal moves
 					if turn == 1:
+
+						legal = False
+						
 						#King
 						if current == wk:
 							if mx == new_mx or my == new_my:
