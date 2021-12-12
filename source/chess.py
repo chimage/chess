@@ -89,23 +89,104 @@ chessboard = [[br,bn,bb,bq,bk,bb,bn,br],
 		 [wp,wp,wp,wp,wp,wp,wp,wp],
 		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 
-def caclulate_best_move():
+def make_best_move():
 	global greatest
 	global legal
 	global test_chessboard
 	global chessboard
 	global turn
 
-	greatest = -90000000
+	greatest = 90000000
 	count_a = 7
 	count_b = 7
 	while count_a >= 0:
 		while count_b >= 0:
 			current_piece = chessboard[count_a][count_b]
+
 			if current_piece == br:
-				pass
+				new_mx = 7
+				new_my = 7
+				mx = count_a
+				my = count_b
+				while new_mx >= 0:
+					while new_my >= 0:
+						if mx == new_mx or my == new_my:
+							f_legal = True
+							if my != new_my:
+								if my < new_my:
+									p = my + 1
+									while p < new_my:
+										if chessboard[mx][p] != 1:
+											f_legal = False
+										p += 1
+									if f_legal == True:
+										legal = True
+								else:
+									p = my - 1
+									while p > new_my:
+										if chessboard[mx][p] != 1:
+											f_legal = False
+										p -= 1
+									if f_legal == True:
+										legal = True
+							else:
+								if mx < new_mx:
+									p = mx + 1
+									while p < new_mx:
+										if chessboard[p][my] != 1:
+											f_legal = False
+										p += 1
+									if f_legal == True:
+										legal = True
+								else:
+									p = mx - 1
+									while p > new_mx:
+										if chessboard[p][mx] != 1:
+											f_legal = False
+										p -= 1
+									if f_legal == True:
+										legal = True
+							test_chessboard = deepcopy(chessboard)
+							if legal == True:
+								test__chessboard = deepcopy(test_chessboard)
+								test__chessboard[new_mx][new_my] = current_piece
+								test__chessboard[mx][my] = 0
+								count_values()
+							if value < greatest:
+								target = chessboard[new_mx][new_my]
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+									test_chessboard[new_mx][new_my] = current_piece
+									test_chessboard[mx][my] = 0
+						new_my -= 1
+					new_mx -= 1
+					new_my = 7
+
 			if current_piece == bb:
-				pass
+				new_mx = 7
+				new_my = 7
+				mx = count_a
+				my = count_b
+				while new_mx >= 0:
+					while new_my >= 0:
+						x = abs(new_mx - mx)
+						y = abs(new_my - my)
+						if x == y and x != 0:
+							legal = True
+						test_chessboard = deepcopy(chessboard)
+						if legal == True:
+							test__chessboard = deepcopy(test_chessboard)
+							test__chessboard[new_mx][new_my] = current_piece
+							test__chessboard[mx][my] = 0
+							count_values()
+							if value < greatest:
+								target = chessboard[new_mx][new_my]
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+									test_chessboard[new_mx][new_my] = current_piece
+									test_chessboard[mx][my] = 0
+						new_my -= 1
+					new_mx -= 1
+					new_my = 7
+
 			if current_piece == bn:
 				new_mx = 7
 				new_my = 7
@@ -114,7 +195,6 @@ def caclulate_best_move():
 				while new_mx >= 0:
 					while new_my >= 0:
 						if mx != new_mx or my != new_my:
-							print(mx,my)
 							if mx == new_mx - 1 and my == new_my + 2:
 								legal = True
 							elif mx == new_mx + 1 and my == new_my + 2:
@@ -137,18 +217,160 @@ def caclulate_best_move():
 								test__chessboard[new_mx][new_my] = current_piece
 								test__chessboard[mx][my] = 0
 								count_values()
-								if value > greatest:
+							if value < greatest:
+								target = chessboard[new_mx][new_my]
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
+			
 			if current_piece == bq:
-				pass
+				new_mx = 7
+				new_my = 7
+				mx = count_a
+				my = count_b
+				while new_mx >= 0:
+					while new_my >= 0:
+						if mx == new_mx or my == new_my:
+							f_legal = True
+							if my != new_my:
+								if my < new_my:
+									p = my + 1
+									while p < new_my:
+										if chessboard[mx][p] != 1:
+											f_legal = False
+										p += 1
+									if f_legal == True:
+										legal = True
+								else:
+									p = my - 1
+									while p > new_my:
+										if chessboard[mx][p] != 1:
+											f_legal = False
+										p -= 1
+									if f_legal == True:
+										legal = True
+							else:
+								if mx < new_mx:
+									p = mx + 1
+									while p < new_mx:
+										if chessboard[p][my] != 1:
+											f_legal = False
+										p += 1
+									if f_legal == True:
+										legal = True
+								else:
+									p = mx - 1
+									while p > new_mx:
+										if chessboard[p][mx] != 1:
+											f_legal = False
+										p -= 1
+									if f_legal == True:
+										legal = True
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
+								legal = True
+						test_chessboard = deepcopy(chessboard)
+						if legal == True:
+							test__chessboard = deepcopy(test_chessboard)
+							test__chessboard[new_mx][new_my] = current_piece
+							test__chessboard[mx][my] = 0
+							count_values()
+							if value < greatest:
+								target = chessboard[new_mx][new_my]
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+									test_chessboard[new_mx][new_my] = current_piece
+									test_chessboard[mx][my] = 0
+						new_my -= 1
+					new_mx -= 1
+					new_my = 7
+				
 			if current_piece == bk:
-				pass
+				new_mx = 7
+				new_my = 7
+				mx = count_a
+				my = count_b
+				while new_mx >= 0:
+					while new_my >= 0:
+						if mx == new_mx or my == new_my:
+							if mx == new_mx + 1 or mx == new_mx - 1:
+								legal = True
+							elif my == new_my + 1 or my == new_my - 1:
+								legal = True
+						else:
+							x = abs(new_mx - mx)
+							y = abs(new_my - my)
+							if x == y and x != 0:
+								if mx == new_mx + 1 and my == new_my + 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx + 1 and my == new_my - 1:
+									legal = True
+								elif mx == new_mx - 1 and my == new_my + 1:
+									legal = True
+						test_chessboard = deepcopy(chessboard)
+						if legal == True:
+							test__chessboard = deepcopy(test_chessboard)
+							test__chessboard[new_mx][new_my] = current_piece
+							test__chessboard[mx][my] = 0
+							count_values()
+							if value < greatest:
+								target = chessboard[new_mx][new_my]
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+									test_chessboard[new_mx][new_my] = current_piece
+									test_chessboard[mx][my] = 0
+						new_my -= 1
+					new_mx -= 1
+					new_my = 7
+
 			if current_piece == bp:
-				pass
+				new_mx = 7
+				new_my = 7
+				mx = count_a
+				my = count_b
+				while new_mx >= 0:
+					while new_my >= 0:
+						if mx < 7 and my < 0:
+							left = chessboard[mx + 1][my - 1]
+							if left != 1:
+								if new_my == my - 1 and new_mx == mx + 1:
+									legal =	True
+						if mx < 7 and my < 7:
+							right = chessboard[mx + 1][my + 1]
+							if right != 1:
+								if new_my == my + 1 and new_mx == mx + 1:
+									legal = True
+						if mx < 7:
+							piece_infront = chessboard[mx + 1][my]
+							if piece_infront == 1:
+								if mx == new_mx - 1 and my == new_my:
+									legal = True
+						if mx < 6:
+							piece_infront2 = chessboard[mx + 2][my]
+							if piece_infront2 == 1 and piece_infront == 1:
+								if mx == 1:
+									if mx == new_mx - 2 and my == new_my:
+										legal = True
+							test_chessboard = deepcopy(chessboard)
+						if legal == True:
+							test__chessboard = deepcopy(test_chessboard)
+							test__chessboard[new_mx][new_my] = current_piece
+							test__chessboard[mx][my] = 0
+							count_values()
+							if value < greatest:
+								target = chessboard[new_mx][new_my]
+								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+									test_chessboard[new_mx][new_my] = current_piece
+									test_chessboard[mx][my] = 0
+						new_my -= 1
+					new_mx -= 1
+					new_my = 7
+
 			count_b -= 1
 		count_a -= 1
 		count_b = 7
@@ -242,7 +464,7 @@ if __name__ == "__main__":
 		draw_turn()
 
 		if turn == 0:
-			caclulate_best_move()
+			make_best_move()
 
 		for event in pygame.event.get():
 			#closing window
@@ -461,175 +683,4 @@ if __name__ == "__main__":
 										chessboard[0][new_my] = wq
 								sound.play()
 						selected = False
-					elif turn == 0:
-
-						caclulate_best_move()
-
-						#king
-						if current == bk:
-							if mx == new_mx or my == new_my:
-								if mx == new_mx + 1 or mx == new_mx - 1:
-									legal = True
-								elif my == new_my + 1 or my == new_my - 1:
-									legal = True
-							else:
-								x = abs(new_mx - mx)
-								y = abs(new_my - my)
-								if x == y and x != 0:
-									if mx == new_mx + 1 and my == new_my + 1:
-										legal = True
-									elif mx == new_mx - 1 and my == new_my - 1:
-										legal = True
-									elif mx == new_mx + 1 and my == new_my - 1:
-										legal = True
-									elif mx == new_mx - 1 and my == new_my + 1:
-										legal = True
-						#Rook
-						if current == br:
-							if mx == new_mx or my == new_my:
-								f_legal = True
-								if my != new_my:
-									if my < new_my:
-										p = my + 1
-										while p < new_my:
-											if chessboard[mx][p] != 1:
-												f_legal = False
-											p += 1
-										if f_legal == True:
-											legal = True
-									else:
-										p = my - 1
-										while p > new_my:
-											if chessboard[mx][p] != 1:
-												f_legal = False
-											p -= 1
-										if f_legal == True:
-											legal = True
-								else:
-									if mx < new_mx:
-										p = mx + 1
-										while p < new_mx:
-											if chessboard[p][my] != 1:
-												f_legal = False
-											p += 1
-										if f_legal == True:
-											legal = True
-									else:
-										p = mx - 1
-										while p > new_mx:
-											if chessboard[p][mx] != 1:
-												f_legal = False
-											p -= 1
-										if f_legal == True:
-											legal = True
-						
-						#Bishop
-						if current == bb:
-							x = abs(new_mx - mx)
-							y = abs(new_my - my)
-							if x == y and x != 0:
-								legal = True
-
-						#Queen
-						if current == bq:
-							if mx == new_mx or my == new_my:
-								f_legal = True
-								if my != new_my:
-									if my < new_my:
-										p = my + 1
-										while p < new_my:
-											if chessboard[mx][p] != 1:
-												f_legal = False
-											p += 1
-										if f_legal == True:
-											legal = True
-									else:
-										p = my - 1
-										while p > new_my:
-											if chessboard[mx][p] != 1:
-												f_legal = False
-											p -= 1
-										if f_legal == True:
-											legal = True
-								else:
-									if mx < new_mx:
-										p = mx + 1
-										while p < new_mx:
-											if chessboard[p][my] != 1:
-												f_legal = False
-											p += 1
-										if f_legal == True:
-											legal = True
-									else:
-										p = mx - 1
-										while p > new_mx:
-											if chessboard[p][mx] != 1:
-												f_legal = False
-											p -= 1
-										if f_legal == True:
-											legal = True
-							else:
-								x = abs(new_mx - mx)
-								y = abs(new_my - my)
-								if x == y and x != 0:
-									legal = True
-
-						#Knight
-						if current == bn:
-							if mx != new_mx or my != new_my:
-								if mx == new_mx - 1 and my == new_my + 2:
-									legal = True
-								elif mx == new_mx + 1 and my == new_my + 2:
-									legal = True
-								elif mx == new_mx - 2 and my == new_my + 1:
-									legal = True
-								elif mx == new_mx + 2 and my == new_my + 1:
-									legal = True
-								elif mx == new_mx - 2 and my == new_my - 1:
-									legal = True
-								elif mx == new_mx + 2 and my == new_my - 1:
-									legal = True
-								elif mx == new_mx - 1 and my == new_my - 2:
-									legal = True
-								elif mx == new_mx + 1 and my == new_my - 2:
-									legal = True
-						
-						#Pawn
-						if current == bp:
-							if mx < 7 and my < 0:
-								left = chessboard[mx + 1][my - 1]
-								if left != 1:
-									if new_my == my - 1 and new_mx == mx + 1:
-										legal =	True
-							if mx < 7 and my < 7:
-								right = chessboard[mx + 1][my + 1]
-								if right != 1:
-									if new_my == my + 1 and new_mx == mx + 1:
-										legal = True
-							if mx < 7:
-								piece_infront = chessboard[mx + 1][my]
-								if piece_infront == 1:
-									if mx == new_mx - 1 and my == new_my:
-										legal = True
-							if mx < 6:
-								piece_infront2 = chessboard[mx + 2][my]
-								if piece_infront2 == 1 and piece_infront == 1:
-									if mx == 1:
-										if mx == new_mx - 2 and my == new_my:
-											legal = True
-
-						#Changing array to move pieces
-						if legal == True:
-							if new_mx != mx or new_my != my:
-								target = chessboard[new_mx][new_my]
-								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									chessboard[mx][my] = 1
-									chessboard[new_mx][new_my] = current
-									turn ^= 1
-									legal = False
-									if current == bp and new_mx == 7:
-										chessboard[7][new_my] = bq
-								sound.play()
-						selected = False
-
 		pygame.display.update()
