@@ -10,6 +10,7 @@ pygame.init()
 
 from copy import deepcopy
 
+#Coordinates of selected square to move from
 mx = 0
 my = 0
 
@@ -22,6 +23,7 @@ icon = pygame.image.load("wk.ico")
 
 pygame.display.set_icon(icon)
 
+#Loading sounds
 sound = pygame.mixer.Sound("sound.wav")
 sound_1 = pygame.mixer.Sound("sound_1.wav")
 
@@ -57,6 +59,7 @@ wk = -60000
 
 value = 0
 
+#Counting piece values on the board (for AI to choose option with the highest amount of points)
 def count_values():
 	global value
 	value = 0
@@ -89,6 +92,7 @@ chessboard = [[br,bn,bb,bq,bk,bb,bn,br],
 		 [wp,wp,wp,wp,wp,wp,wp,wp],
 		 [wr,wn,wb,wq,wk,wb,wn,wr]]
 
+#Minimax algorithm to find best move for black
 def make_best_move():
 	global greatest
 	global legal
@@ -383,8 +387,8 @@ boardLength = 8
 game_display.fill(light)
 square_size = 64
 
+#Drawing squares
 def draw_board():
-	#drawing squares
 	count = 0
 	for i in range(1,boardLength+1):
 		for z in range(1,boardLength+1):
@@ -395,6 +399,7 @@ def draw_board():
 			count +=1
 		count-=1
 
+#Putting the images of the pieces onto the screen to show their positions to the user
 def draw_pieces():
 	row = 0
 	column = 0
@@ -454,7 +459,7 @@ def draw_turn():
 legal = False
 
 if __name__ == "__main__":
-	#main
+	#Main loop
 	loop = True
 
 	while loop:
@@ -471,8 +476,8 @@ if __name__ == "__main__":
 			if event.type == pygame.QUIT:
 				loop = False
 
-			#moving pieces
 			if event.type == pygame.MOUSEBUTTONDOWN:
+				#If mouse clicks on 'new' reset the board and whose turn it is
 				cx, cy = pygame.mouse.get_pos()
 				if cx < 64 and cy < 64:
 					turn = 1 #1 for white, 0 for black
@@ -490,6 +495,7 @@ if __name__ == "__main__":
 							[wp,wp,wp,wp,wp,wp,wp,wp],
 							[wr,wn,wb,wq,wk,wb,wn,wr]]
 
+				#Moving pieces
 				if selected == False:
 					if skip == False:
 						my, mx = pygame.mouse.get_pos() #mx and my are the starting square coordinates
@@ -515,7 +521,7 @@ if __name__ == "__main__":
 					new_my = int(new_my)
 
 
-					##Legal moves
+					#Legal moves
 					if turn == 1:
 
 						legal = False
