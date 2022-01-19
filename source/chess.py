@@ -157,10 +157,8 @@ def make_best_move():
 								test__chessboard[mx][my] = 0
 								count_values()
 							if value <= greatest:
-								print("yay")
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									print("hey")
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 									greatest = value
@@ -186,10 +184,8 @@ def make_best_move():
 							test__chessboard[mx][my] = 0
 							count_values()
 							if value <= greatest:
-								print("yay")
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									print("hey")
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 									greatest = value
@@ -228,10 +224,8 @@ def make_best_move():
 								test__chessboard[mx][my] = 0
 								count_values()
 							if value <= greatest:
-								print("yay")
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									print("hey")
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 									greatest = value
@@ -294,10 +288,8 @@ def make_best_move():
 							test__chessboard[mx][my] = 0
 							count_values()
 							if value <= greatest:
-								print("yay")
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									print("hey")
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 									greatest = value
@@ -336,10 +328,8 @@ def make_best_move():
 							test__chessboard[mx][my] = 0
 							count_values()
 							if value <= greatest:
-								print("yay")
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									print("hey")
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 									greatest = value
@@ -382,10 +372,8 @@ def make_best_move():
 							test__chessboard[mx][my] = 0
 							count_values()
 							if value <= greatest:
-								print("yay")
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									print("hey")
 									test_chessboard[new_mx][new_my] = current_piece
 									test_chessboard[mx][my] = 0
 									greatest = value
