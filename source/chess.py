@@ -159,8 +159,9 @@ def make_best_move():
 							if value <= greatest:
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test_chessboard[new_mx][new_my] = current_piece
-									test_chessboard[mx][my] = 0
+									test___chessboard = deepcopy(chessboard)
+									test___chessboard[new_mx][new_my] = current_piece
+									test___chessboard[mx][my] = 0
 									greatest = value
 						new_my -= 1
 					new_mx -= 1
@@ -186,8 +187,9 @@ def make_best_move():
 							if value <= greatest:
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test_chessboard[new_mx][new_my] = current_piece
-									test_chessboard[mx][my] = 0
+									test___chessboard = deepcopy(chessboard)
+									test___chessboard[new_mx][new_my] = current_piece
+									test___chessboard[mx][my] = 0
 									greatest = value
 						new_my -= 1
 					new_mx -= 1
@@ -226,8 +228,9 @@ def make_best_move():
 							if value <= greatest:
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test_chessboard[new_mx][new_my] = current_piece
-									test_chessboard[mx][my] = 0
+									test___chessboard = deepcopy(chessboard)
+									test___chessboard[new_mx][new_my] = current_piece
+									test___chessboard[mx][my] = 0
 									greatest = value
 						new_my -= 1
 					new_mx -= 1
@@ -290,8 +293,9 @@ def make_best_move():
 							if value <= greatest:
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test_chessboard[new_mx][new_my] = current_piece
-									test_chessboard[mx][my] = 0
+									test___chessboard = deepcopy(chessboard)
+									test___chessboard[new_mx][new_my] = current_piece
+									test___chessboard[mx][my] = 0
 									greatest = value
 						new_my -= 1
 					new_mx -= 1
@@ -330,8 +334,9 @@ def make_best_move():
 							if value <= greatest:
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test_chessboard[new_mx][new_my] = current_piece
-									test_chessboard[mx][my] = 0
+									test___chessboard = deepcopy(chessboard)
+									test___chessboard[new_mx][new_my] = current_piece
+									test___chessboard[mx][my] = 0
 									greatest = value
 						new_my -= 1
 					new_mx -= 1
@@ -374,8 +379,9 @@ def make_best_move():
 							if value <= greatest:
 								target = chessboard[new_mx][new_my]
 								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test_chessboard[new_mx][new_my] = current_piece
-									test_chessboard[mx][my] = 0
+									test___chessboard = deepcopy(chessboard)
+									test___chessboard[new_mx][new_my] = current_piece
+									test___chessboard[mx][my] = 0
 									greatest = value
 						new_my -= 1
 					new_mx -= 1
@@ -384,7 +390,7 @@ def make_best_move():
 			count_b -= 1
 		count_a -= 1
 		count_b = 7
-	chessboard = test_chessboard
+	chessboard = test___chessboard
 	turn ^= 1
 			
 
