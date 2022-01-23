@@ -2,6 +2,7 @@
 #Open source project - for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
+debug = True
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" #Hiding the greetings from the pygame comminity message
 
@@ -18,6 +19,7 @@ my = 0
 screen = 512+128
 window = pygame.display.set_mode((screen, screen))
 pygame.display.set_caption("Chess")
+window.fill((255,255,255))
 
 icon = pygame.image.load("wk.ico")
 
@@ -77,8 +79,8 @@ def count_values():
 			count_loop = False
 
 #Setting colors for board
-light = (255, 255, 255)
-dark = (85, 136, 182)
+light = (255,255,255)
+dark = (167,201,87)
 
 #Setting starting poition
 #Unlike on a normal chess board (where it would be 1-8), this records positions as 0-7
@@ -163,6 +165,8 @@ def make_best_move():
 									test___chessboard[new_mx][new_my] = current_piece
 									test___chessboard[mx][my] = 0
 									greatest = value
+									if debug == True:
+										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
@@ -191,6 +195,8 @@ def make_best_move():
 									test___chessboard[new_mx][new_my] = current_piece
 									test___chessboard[mx][my] = 0
 									greatest = value
+									if debug == True:
+										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
@@ -232,6 +238,8 @@ def make_best_move():
 									test___chessboard[new_mx][new_my] = current_piece
 									test___chessboard[mx][my] = 0
 									greatest = value
+									if debug == True:
+										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
@@ -297,6 +305,8 @@ def make_best_move():
 									test___chessboard[new_mx][new_my] = current_piece
 									test___chessboard[mx][my] = 0
 									greatest = value
+									if debug == True:
+										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
@@ -338,6 +348,8 @@ def make_best_move():
 									test___chessboard[new_mx][new_my] = current_piece
 									test___chessboard[mx][my] = 0
 									greatest = value
+									if debug == True:
+										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
@@ -383,6 +395,8 @@ def make_best_move():
 									test___chessboard[new_mx][new_my] = current_piece
 									test___chessboard[mx][my] = 0
 									greatest = value
+									if debug == True:
+										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
@@ -394,9 +408,7 @@ def make_best_move():
 	turn ^= 1
 			
 
-game_display = pygame.display.set_mode((512+128,512+128))
 boardLength = 8
-game_display.fill(light)
 square_size = 64
 
 #Drawing squares
@@ -405,9 +417,9 @@ def draw_board():
 	for i in range(1,boardLength+1):
 		for z in range(1,boardLength+1):
 			if count % 2 == 0:
-				pygame.draw.rect(game_display, light,[square_size*z,square_size*i,square_size,square_size])
+				pygame.draw.rect(window, light,[square_size*z,square_size*i,square_size,square_size])
 			else:
-				pygame.draw.rect(game_display, dark, [square_size*z,square_size*i,square_size,square_size])
+				pygame.draw.rect(window, dark, [square_size*z,square_size*i,square_size,square_size])
 			count +=1
 		count-=1
 
@@ -456,16 +468,10 @@ skip = False
 
 def draw_turn():
 	pygame.draw.rect(window, (255, 255, 255), (0,0,512+128,64))
-	if turn == 1:
-		player = "White"
-	else:
-		player = "Black"
 	#drawing text
-	label = font.render(str(player), 1, (0,0,0))
-	window.blit(label, (64, 32))
 	label = font.render("Goose Chess", 1, (0,0,0))
 	window.blit(label, (512, 32))
-	label = font.render("New", 1, (108,85,182))
+	label = font.render("New", 1, (0,0,0))
 	window.blit(label, (16, 8))
 
 legal = False
