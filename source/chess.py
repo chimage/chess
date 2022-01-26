@@ -116,6 +116,7 @@ def make_best_move():
 				my = count_b
 				while new_mx >= 0:
 					while new_my >= 0:
+						legal = False
 						if mx == new_mx or my == new_my:
 							f_legal = True
 							if my != new_my:
@@ -178,6 +179,7 @@ def make_best_move():
 				my = count_b
 				while new_mx >= 0:
 					while new_my >= 0:
+						legal = False
 						x = abs(new_mx - mx)
 						y = abs(new_my - my)
 						if x == y and x != 0:
@@ -208,6 +210,7 @@ def make_best_move():
 				my = count_b
 				while new_mx >= 0:
 					while new_my >= 0:
+						legal = False
 						if mx != new_mx or my != new_my:
 							if mx == new_mx - 1 and my == new_my + 2:
 								legal = True
@@ -251,6 +254,7 @@ def make_best_move():
 				my = count_b
 				while new_mx >= 0:
 					while new_my >= 0:
+						legal = False
 						if mx == new_mx or my == new_my:
 							f_legal = True
 							if my != new_my:
@@ -318,6 +322,7 @@ def make_best_move():
 				my = count_b
 				while new_mx >= 0:
 					while new_my >= 0:
+						legal = False
 						if mx == new_mx or my == new_my:
 							if mx == new_mx + 1 or mx == new_mx - 1:
 								legal = True
@@ -361,6 +366,7 @@ def make_best_move():
 				my = count_b
 				while new_mx >= 0:
 					while new_my >= 0:
+						legal = False
 						if mx < 7 and my < 0:
 							left = chessboard[mx + 1][my - 1]
 							if left != 1:
