@@ -66,16 +66,16 @@ def count_values():
 	global value
 	value = 0
 	global chessboard
-	aa = 0
-	bb = 0
+	aaa = 0
+	bbb = 0
 	count_loop = True
 	while count_loop:
-		value += test_chessboard[aa][bb]
-		aa += 1
-		if aa > 7:
-			aa = 0
-			bb += 1
-		if bb > 7:
+		value += test_chessboard[aaa][bbb]
+		aaa += 1
+		if aaa > 7:
+			aaa = 0
+			bbb += 1
+		if bbb > 7:
 			count_loop = False
 
 #Setting colors for board
@@ -234,15 +234,15 @@ def make_best_move():
 								test__chessboard[new_mx][new_my] = current_piece
 								test__chessboard[mx][my] = 0
 								count_values()
-							if value <= greatest:
-								target = chessboard[new_mx][new_my]
-								if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-									test___chessboard = deepcopy(chessboard)
-									test___chessboard[new_mx][new_my] = current_piece
-									test___chessboard[mx][my] = 0
-									greatest = value
-									if debug == True:
-										print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+								if value <= greatest:
+									target = chessboard[new_mx][new_my]
+									if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+										test___chessboard = deepcopy(chessboard)
+										test___chessboard[new_mx][new_my] = current_piece
+										test___chessboard[mx][my] = 0
+										greatest = value
+										if debug == True:
+											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 						new_my -= 1
 					new_mx -= 1
 					new_my = 7
