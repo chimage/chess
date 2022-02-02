@@ -1,4 +1,4 @@
-#Wombat chess
+#Wombat chess`
 #Open source project - for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
@@ -80,6 +80,7 @@ def count_values():
 
 #Setting colors for board
 light = (255,255,255)
+medium = (211,228,171)
 dark = (167,201,87)
 
 #Setting starting poition
@@ -108,6 +109,8 @@ def draw_board():
 				pygame.draw.rect(window, dark, [square_size*z,square_size*i,square_size,square_size])
 			count +=1
 		count-=1
+	if selected == True:
+		pygame.draw.rect(window, medium, [(square_size*mx)+64,(square_size*my)+64,square_size,square_size])
 
 #Putting the images of the pieces onto the screen to show their positions to the user
 def draw_pieces():
