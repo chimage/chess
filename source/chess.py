@@ -520,7 +520,6 @@ if __name__ == "__main__":
 								current = chessboard[mx][my]
 								selected = True
 								draw_selected = True
-								if current != 1:
 						else:
 							skip = True
 					else:
