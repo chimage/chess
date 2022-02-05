@@ -25,9 +25,7 @@ icon = pygame.image.load("wk.ico")
 
 pygame.display.set_icon(icon)
 
-#Loading sounds
 sound = pygame.mixer.Sound("sound.wav")
-sound_1 = pygame.mixer.Sound("sound_1.wav")
 
 #Loading images
 _wq = pygame.image.load("wq.png")
@@ -523,7 +521,6 @@ if __name__ == "__main__":
 								selected = True
 								draw_selected = True
 								if current != 1:
-									sound_1.play()
 						else:
 							skip = True
 					else:
