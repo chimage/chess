@@ -5,5 +5,5 @@ https://github.com/quay0/chess
 
 ## Gallery
 
-![Screenshot 2021-11-28 083344](https://user-images.githubusercontent.com/83027933/143735442-1d8ee9ad-dc9d-4e33-bcc1-8a77d2699e0e.png)
+![screenshot](https://user-images.githubusercontent.com/83027933/152654042-53ce13c3-498c-4c31-92c4-0b74c0f66bd2.png)
 ![goose chess](https://user-images.githubusercontent.com/83027933/141642287-13a0fb66-6710-4cb2-a4d7-c8639a98cf40.png)
