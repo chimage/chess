@@ -1,8 +1,8 @@
-#Wombat chess`
+#Wombat chess
 #Open source project - for more information see https://github.com/quay0/chess/
 #This is a development build meaning it may contain bugs - if you find any go to https://github.com/quay0/chess/issues/new/choose and select bug report
 
-debug = True
+draw_selected = False
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" #Hiding the greetings from the pygame comminity message
 
@@ -109,8 +109,10 @@ def draw_board():
 				pygame.draw.rect(window, dark, [square_size*z,square_size*i,square_size,square_size])
 			count +=1
 		count-=1
-	if selected == True:
-		pygame.draw.rect(window, medium, [(square_size*mx)+64,(square_size*my)+64,square_size,square_size])
+	if draw_selected == True:
+		print(mx)
+		print(my)
+		pygame.draw.rect(window, medium, [(square_size*my)+64,(square_size*mx)+64,square_size,square_size])
 
 #Putting the images of the pieces onto the screen to show their positions to the user
 def draw_pieces():
@@ -176,6 +178,7 @@ if __name__ == "__main__":
 		draw_turn()
 
 		if turn == 0:
+			draw_selected = False
 			greatest = 90000000
 			count_a = 7
 			count_b = 7
@@ -240,8 +243,7 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											if debug == True:
-												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -271,8 +273,7 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											if debug == True:
-												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -315,8 +316,7 @@ if __name__ == "__main__":
 												test___chessboard[new_mx][new_my] = current_piece
 												test___chessboard[mx][my] = 0
 												greatest = value
-												if debug == True:
-													print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -383,8 +383,7 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											if debug == True:
-												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -427,8 +426,7 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											if debug == True:
-												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -475,8 +473,7 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											if debug == True:
-												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
+											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -524,6 +521,7 @@ if __name__ == "__main__":
 							if chessboard[mx][my] != 1:
 								current = chessboard[mx][my]
 								selected = True
+								draw_selected = True
 								if current != 1:
 									sound_1.play()
 						else:
