@@ -11,6 +11,8 @@ pygame.init()
 
 from copy import deepcopy
 
+import ai.py
+
 #Coordinates of selected square to move from
 mx = 0
 my = 0
