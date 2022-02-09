@@ -108,8 +108,6 @@ def draw_board():
 			count +=1
 		count-=1
 	if draw_selected == True:
-		print(mx)
-		print(my)
 		if mx < 8 and my < 8:
 			pygame.draw.rect(window, medium, [(square_size*my)+64,(square_size*mx)+64,square_size,square_size])
 
@@ -242,7 +240,6 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -272,7 +269,6 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -315,7 +311,6 @@ if __name__ == "__main__":
 												test___chessboard[new_mx][new_my] = current_piece
 												test___chessboard[mx][my] = 0
 												greatest = value
-												print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -381,8 +376,6 @@ if __name__ == "__main__":
 											test___chessboard = deepcopy(chessboard)
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
-											greatest = value
-											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -425,7 +418,6 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
@@ -472,7 +464,6 @@ if __name__ == "__main__":
 											test___chessboard[new_mx][new_my] = current_piece
 											test___chessboard[mx][my] = 0
 											greatest = value
-											print(str(current_piece)+"   "+str(mx)+","+str(my)+" "+str(new_mx)+","+str(new_my))
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
