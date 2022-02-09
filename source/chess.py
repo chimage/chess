@@ -110,7 +110,8 @@ def draw_board():
 	if draw_selected == True:
 		print(mx)
 		print(my)
-		pygame.draw.rect(window, medium, [(square_size*my)+64,(square_size*mx)+64,square_size,square_size])
+		if mx < 8 and my < 8:
+			pygame.draw.rect(window, medium, [(square_size*my)+64,(square_size*mx)+64,square_size,square_size])
 
 #Putting the images of the pieces onto the screen to show their positions to the user
 def draw_pieces():
