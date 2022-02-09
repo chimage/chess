@@ -149,7 +149,7 @@ def draw_pieces():
 		row += 1
 		column = 0
 
-font = pygame.font.SysFont("consolas", 16)
+font = pygame.font.Font("font.ttf", 14)
 turn = 1 #1 for white, 0 for black
 selected = False
 skip = False
@@ -158,9 +158,9 @@ def draw_turn():
 	pygame.draw.rect(window, (255, 255, 255), (0,0,512+128,64))
 	#drawing text
 	label = font.render("Goose Chess", 1, (0,0,0))
-	window.blit(label, (512, 32))
-	label = font.render("New", 1, (0,0,0))
-	window.blit(label, (16, 8))
+	window.blit(label, (490, 32))
+	label = font.render("New", 1, dark)
+	window.blit(label, (64, 32))
 
 legal = False
 
