@@ -483,7 +483,7 @@ if __name__ == "__main__":
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				#If mouse clicks on 'new' reset the board and whose turn it is
 				cx, cy = pygame.mouse.get_pos()
-				if cx < 64 and cy < 64:
+				if cx > 32 and cx < 94 and cy > 0 and cy < 64:
 					turn = 1 #1 for white, 0 for black
 					selected = False
 					skip = False
