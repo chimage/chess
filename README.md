@@ -5,7 +5,7 @@ https://github.com/quay0/chess
 
 ## Gallery
 
-![screenshot](https://user-images.githubusercontent.com/83027933/152654042-53ce13c3-498c-4c31-92c4-0b74c0f66bd2.png)
+![screenshot](https://user-images.githubusercontent.com/83027933/154280818-c616e490-d36c-4962-995a-1b81cfa7eb9e.png)
 
 A screenshot of goose chess
 
