@@ -233,13 +233,13 @@ if __name__ == "__main__":
 										test__chessboard[new_mx][new_my] = current_piece
 										test__chessboard[mx][my] = 0
 										count_values()
-									if value <= greatest:
-										target = chessboard[new_mx][new_my]
-										if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
-											test___chessboard = deepcopy(chessboard)
-											test___chessboard[new_mx][new_my] = current_piece
-											test___chessboard[mx][my] = 0
-											greatest = value
+										if value <= greatest:
+											target = chessboard[new_mx][new_my]
+											if target == wk or target == wq or target == wb or target == wn or target == wr or target == wp or target == 1:
+												test___chessboard = deepcopy(chessboard)
+												test___chessboard[new_mx][new_my] = current_piece
+												test___chessboard[mx][my] = 0
+												greatest = value
 								new_my -= 1
 							new_mx -= 1
 							new_my = 7
