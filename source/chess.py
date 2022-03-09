@@ -590,10 +590,54 @@ if __name__ == "__main__":
 						
 						#Bishop
 						if current == wb:
+							print(str(mx))
 							x = abs(new_mx - mx)
 							y = abs(new_my - my)
 							if x == y and x != 0:
-								legal = True
+								f_legal = True
+								if my < new_my:
+									legal = True
+									if mx < new_mx:
+										px = mx + 1
+										py = my + 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+										print("down, right")
+									else:
+										px = mx - 1
+										py = my + 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+										print("up, right")
+								else:
+									if mx < new_mx:
+										px = mx + 1
+										py = my - 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+										print("down, left")
+									else:
+										px = mx - 1
+										py = my - 1
+										while p < new_my:
+											if chessboard[mx][p] != 1:
+												f_legal = False
+											p += 1
+										if f_legal == True:
+											legal = True
+										print("up, left")					
 						
 						#Queen
 						if current == wq:
