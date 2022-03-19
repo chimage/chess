@@ -11,10 +11,6 @@ pygame.init()
 
 from copy import deepcopy
 
-from tkinter import *
-from tkinter import messagebox#
-root = Tk()
-
 #Coordinates of selected square to move from
 mx = 0
 my = 0
