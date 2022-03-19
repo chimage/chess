@@ -96,15 +96,6 @@ def check_win():
         scanx += 1
         scany = 0
     if no_wk == True or no_bk == True:
-        root = Tk()
-        if no_wk == True:
-            root.destroy()
-            messagebox.showinfo('Continue','Black won')
-            root.quit()
-        if no_bk == True:
-            root.destroy()
-            messagebox.showinfo('Continue','White won')
-            root.quit()
         turn = 1 #1 for white, 0 for black
         selected = False
         skip = False
@@ -119,7 +110,7 @@ def check_win():
                 [1,1,1,1,1,1,1,1],
                 [wp,wp,wp,wp,wp,wp,wp,wp],
                 [wr,wn,wb,wq,wk,wb,wn,wr]]
-        
+
 
 #Setting colors for board
 light = (255,255,255)
@@ -529,8 +520,7 @@ if __name__ == "__main__":
             if event.type == pygame.MOUSEBUTTONDOWN:
                 #If mouse clicks on 'new' reset the board and whose turn it is
                 cx, cy = pygame.mouse.get_pos()
-                if cx > 32 and cx < 94 and cy > 0 and cy < 64:
-                    turn = 1 #1 for white, 0 for black
+                if cx > 32 and cx < 94 and cy > 0 and cy < 64:                    turn = 1 #1 for white, 0 for black
                     selected = False
                     skip = False
                     legal = False
