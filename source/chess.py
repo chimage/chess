@@ -11,6 +11,8 @@ pygame.init()
 
 from copy import deepcopy
 
+from tkinter import messagebox
+
 #Coordinates of selected square to move from
 mx = 0
 my = 0
@@ -75,6 +77,28 @@ def count_values():
 			bbb += 1
 		if bbb > 7:
 			count_loop = False
+
+def check_win():
+	no_wk = True
+	no_bk = True
+	global chessboard
+	scanx = 0
+	scany = 0
+	while scanx < 8:
+		while scany < 8:
+			if chessboard[scanx][scany] == wk:
+				no_wk = False
+			if chessboard[scanx][scany] == bk:
+				no_bk = False
+			scany += 1
+		scanx += 1
+		scany = 0
+	if no_wk == True or no_bk == True:
+		if no_wk == True:
+			###
+		if no_bk == True:
+			###
+		
 
 #Setting colors for board
 light = (255,255,255)
@@ -173,6 +197,7 @@ if __name__ == "__main__":
 		draw_board()
 		draw_pieces()
 		draw_turn()
+		check_win()
 
 		if turn == 0:
 			draw_selected = False
