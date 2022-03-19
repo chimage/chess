@@ -11,7 +11,9 @@ pygame.init()
 
 from copy import deepcopy
 
-from tkinter import messagebox
+from tkinter import *
+from tkinter import messagebox#
+root = Tk()
 
 #Coordinates of selected square to move from
 mx = 0
@@ -94,10 +96,29 @@ def check_win():
         scanx += 1
         scany = 0
     if no_wk == True or no_bk == True:
+        root = Tk()
         if no_wk == True:
-            ###
+            root.destroy()
+            messagebox.showinfo('Continue','Black won')
+            root.quit()
         if no_bk == True:
-            ###
+            root.destroy()
+            messagebox.showinfo('Continue','White won')
+            root.quit()
+        turn = 1 #1 for white, 0 for black
+        selected = False
+        skip = False
+        legal = False
+        mx = 0
+        my = 0
+        chessboard = [[br,bn,bb,bq,bk,bb,bn,br],
+                [bp,bp,bp,bp,bp,bp,bp,bp],
+                [1,1,1,1,1,1,1,1],
+                [1,1,1,1,1,1,1,1],
+                [1,1,1,1,1,1,1,1],
+                [1,1,1,1,1,1,1,1],
+                [wp,wp,wp,wp,wp,wp,wp,wp],
+                [wr,wn,wb,wq,wk,wb,wn,wr]]
         
 
 #Setting colors for board
