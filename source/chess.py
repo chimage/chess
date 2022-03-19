@@ -590,7 +590,6 @@ if __name__ == "__main__":
 						
 						#Bishop
 						if current == wb:
-							print(str(mx))
 							x = abs(new_mx - mx)
 							y = abs(new_my - my)
 							if x == y and x != 0:
@@ -600,20 +599,24 @@ if __name__ == "__main__":
 									if mx < new_mx:
 										px = mx + 1
 										py = my + 1
-										while p < new_my:
-											if chessboard[mx][p] != 1:
-												f_legal = False
-											p += 1
+										while px < new_mx and py < new_my:
+											print(mx, my)
+											if chessboard[px][py] != 1:
+                                                                                                        f_legal = False
+											px += 1
+											py += 1
 										if f_legal == True:
 											legal = True
 										print("down, right")
 									else:
 										px = mx - 1
 										py = my + 1
-										while p < new_my:
+										while px < new_mx and py < new_my:
+											print(mx, my)
 											if chessboard[mx][p] != 1:
-												f_legal = False
-											p += 1
+                                                                                                        f_legal = False
+											px -= 1
+											py += 1
 										if f_legal == True:
 											legal = True
 										print("up, right")
@@ -621,23 +624,27 @@ if __name__ == "__main__":
 									if mx < new_mx:
 										px = mx + 1
 										py = my - 1
-										while p < new_my:
+										while px < new_mx and py < new_my:
+											print(mx, my)
 											if chessboard[mx][p] != 1:
-												f_legal = False
-											p += 1
+                                                                                                        f_legal = False
+											px += 1
+											py -= 1
 										if f_legal == True:
 											legal = True
 										print("down, left")
 									else:
 										px = mx - 1
 										py = my - 1
-										while p < new_my:
+										while px < new_mx and py < new_my:
+											print(mx, my)
 											if chessboard[mx][p] != 1:
-												f_legal = False
-											p += 1
+                                                                                                        f_legal = False
+											px -= 1
+											py -= 1
 										if f_legal == True:
 											legal = True
-										print("up, left")					
+										print("up, left")
 						
 						#Queen
 						if current == wq:
